@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #e95d7a;
+  --color-primary-hover: #d84868;
+  --color-background-light: #fffdf2;
+  --color-background-dark: #1a1a1a;
+  --color-watercolor-pink: #fce4ec;
+  --color-watercolor-yellow: #fff9c4;
+
+  --font-display: 'Dancing Script', cursive;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :root.dark, html.dark, html.dark body {
+    color-scheme: dark;
+    background-color: #1a1a1a;
+    color: #f1f5f9;
+  }
+
+  :root:not(.dark), html:not(.dark), html:not(.dark) body {
+    color-scheme: light;
+    background-color: #fffdf2;
+    color: #1e293b;
+  }
+}
+
+.scroll-mt-24 {
+  scroll-margin-top: 6rem;
+}
+
+/* Book 3D lighting and spine shadows */
+.book-spine-gradient {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.28) 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(0, 0, 0, 0.1) 45%,
+    rgba(0, 0, 0, 0.02) 80%,
+    transparent 100%
+  );
+}
+
+.book-glare {
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+}
+
+.book-shadow-3d {
+  box-shadow: -8px 12px 24px -6px rgba(0, 0, 0, 0.25),
+              -20px 24px 45px -12px rgba(233, 93, 122, 0.25),
+              0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
