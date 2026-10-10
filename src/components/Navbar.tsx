@@ -28,11 +28,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             aria-label="AkuruLab"
             title="AkuruLab"
           >
-            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-[#DEE5D4] dark:border-slate-700 shadow-xs bg-white flex items-center justify-center p-0.5 group-hover:scale-105 group-hover:border-primary/50 transition-all duration-300">
+            <div className="w-[54px] h-[54px] sm:w-[58px] sm:h-[58px] rounded-full overflow-hidden bg-white flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
               <img
                 src={IMAGES.logo}
                 alt="AkuruLab Logo"
-                className="w-full h-full object-contain rounded-full"
+                className="w-full h-full object-cover scale-[1.18] rounded-full"
               />
             </div>
           </a>
@@ -125,10 +125,10 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <div className="md:hidden bg-white/95 dark:bg-zinc-900/95 backdrop-blur-lg border-b border-pink-100 dark:border-slate-800 px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="flex items-center gap-3 px-3 py-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-            <div className="w-9 h-9 rounded-full overflow-hidden border border-[#DEE5D4] dark:border-slate-700 bg-white flex items-center justify-center p-0.5">
-              <img src={IMAGES.logo} alt="AkuruLab" className="w-full h-full object-contain rounded-full" />
+            <div className="w-12 h-12 rounded-full overflow-hidden bg-white flex items-center justify-center">
+              <img src={IMAGES.logo} alt="AkuruLab" className="w-full h-full object-cover scale-[1.18] rounded-full" />
             </div>
-            <span className="font-semibold text-base text-slate-800 dark:text-white">AkuruLab</span>
+            <span className="font-semibold text-lg text-slate-800 dark:text-white">AkuruLab</span>
           </div>
           <a
             href="#about-book"
