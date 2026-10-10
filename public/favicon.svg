@@ -1,140 +1,143 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <!-- Background Circle (White with clean dark border) -->
-  <circle cx="256" cy="256" r="244" fill="#ffffff" stroke="#2c2c2c" stroke-width="14" />
+  <!-- Clean white background matching 'Chemistry Flask Pouring into Open Book.png' -->
+  <rect width="512" height="512" rx="64" fill="#ffffff" />
+
+  <!-- Rising bubbles floating above tilted flask -->
+  <circle cx="355" cy="95" r="14" fill="#111111" />
+  <circle cx="388" cy="108" r="9" fill="#111111" />
 
   <!-- Laboratory Flask (Tilted pouring towards book) -->
-  <g id="flask" transform="rotate(-38 245 190)">
+  <g transform="rotate(-38 238 210)">
     <!-- Flask Outline and Body -->
     <path
-      d="M 215 90 
-         L 215 155 
-         C 170 190, 170 250, 215 285 
-         C 260 320, 320 320, 365 285 
-         C 410 250, 410 190, 365 155 
-         L 365 90 
+      d="M 216 100 
+         L 216 168 
+         C 168 206, 168 268, 216 306 
+         C 264 344, 328 344, 376 306 
+         C 424 268, 424 206, 376 168 
+         L 376 100 
          Z"
       fill="#ffffff"
-      stroke="#383838"
-      stroke-width="12"
+      stroke="#111111"
+      stroke-width="16"
       stroke-linejoin="round"
     />
     <!-- Flask Lip / Flanged Rim -->
-    <rect x="205" y="76" width="170" height="18" rx="9" fill="#ffffff" stroke="#383838" stroke-width="12" />
+    <rect x="204" y="84" width="184" height="22" rx="11" fill="#ffffff" stroke="#111111" stroke-width="16" />
     
     <!-- Liquid inside the tilted flask -->
     <path
-      d="M 185 240
-         C 220 280, 280 290, 320 280
-         C 370 268, 395 240, 395 240
-         C 405 260, 385 295, 355 310
-         C 315 330, 250 325, 210 295
-         C 185 275, 175 255, 185 240
+      d="M 182 258
+         C 220 300, 285 312, 330 300
+         C 382 286, 408 258, 408 258
+         C 418 280, 396 318, 364 334
+         C 322 355, 252 350, 210 318
+         C 182 296, 172 274, 182 258
          Z"
-      fill="#3a3a3a"
+      fill="#111111"
     />
-    <!-- Meniscus curved liquid surface -->
+    <!-- Meniscus curved liquid surface line -->
     <path
-      d="M 185 240 
-         Q 280 220 395 240 
-         Q 290 270 185 240 Z"
-      fill="#2d2d2d"
+      d="M 182 258 
+         Q 285 234 408 258 
+         Q 295 292 182 258 Z"
+      fill="#111111"
     />
   </g>
 
-  <!-- Splashes / Droplets pouring from flask -->
-  <circle cx="330" cy="265" r="9" fill="#3a3a3a" />
-  <circle cx="346" cy="248" r="6" fill="#3a3a3a" />
-  <circle cx="338" cy="188" r="7" fill="#3a3a3a" />
-  <circle cx="324" cy="172" r="5" fill="#3a3a3a" />
+  <!-- Pouring Droplets from Flask Mouth into Book -->
+  <circle cx="362" cy="286" r="12" fill="#111111" />
+  <circle cx="348" cy="314" r="9" fill="#111111" />
+  <circle cx="356" cy="336" r="7" fill="#111111" />
   
-  <!-- Splash impact onto open book -->
+  <!-- Splash impact onto the open book page -->
   <path
-    d="M 315 295 
-       C 310 280, 318 268, 322 280
-       C 328 265, 338 272, 332 288
-       C 342 278, 350 286, 342 298
-       C 334 308, 320 305, 315 295 Z"
-    fill="#3a3a3a"
+    d="M 326 362 
+       C 320 342, 330 326, 336 342
+       C 344 322, 358 332, 350 354
+       C 362 340, 372 352, 362 368
+       C 350 382, 334 378, 326 362 Z"
+    fill="#111111"
   />
 
   <!-- Open Book Beneath Flask -->
-  <g id="book">
-    <!-- Bottom Cover Base -->
+  <g id="open-book">
+    <!-- Bottom Cover Silhouette -->
     <path
-      d="M 95 372 
-         Q 175 366 256 360 
-         Q 337 366 417 372 
-         L 417 378 
-         Q 337 372 256 367 
-         Q 175 372 95 378 
+      d="M 75 428 
+         Q 165 420 256 414 
+         Q 347 420 437 428 
+         L 437 438 
+         Q 347 430 256 424 
+         Q 165 430 75 438 
          Z"
-      fill="#333333"
+      fill="#111111"
     />
     <!-- Center Spine Binding Notch -->
-    <ellipse cx="256" cy="365" rx="14" ry="7" fill="#ffffff" stroke="#333333" stroke-width="4" />
+    <ellipse cx="256" cy="422" rx="18" ry="9" fill="#ffffff" stroke="#111111" stroke-width="5" />
 
     <!-- Left Book Pages Fanning -->
     <path
-      d="M 250 357 
-         Q 170 348 108 362 
-         Q 175 338 250 352"
-      fill="#333333"
+      d="M 248 412 
+         Q 160 400 88 418 
+         Q 165 390 248 406"
+      fill="#111111"
     />
     <path
-      d="M 250 347 
-         Q 175 330 118 348 
-         Q 180 322 250 341"
-      fill="#333333"
+      d="M 248 400 
+         Q 165 380 98 402 
+         Q 172 370 248 393"
+      fill="#111111"
     />
     <path
-      d="M 250 336 
-         Q 180 312 132 334 
-         Q 188 304 250 328"
-      fill="#333333"
+      d="M 248 387 
+         Q 172 358 114 384 
+         Q 182 348 248 377"
+      fill="#111111"
     />
     <path
-      d="M 250 323 
-         Q 188 296 148 318 
-         Q 196 288 250 315"
-      fill="#333333"
+      d="M 248 372 
+         Q 182 338 132 364 
+         Q 192 328 248 360"
+      fill="#111111"
     />
     <path
-      d="M 250 310 
-         Q 196 280 165 304 
-         Q 208 272 250 302"
-      fill="#333333"
+      d="M 248 356 
+         Q 192 318 152 346 
+         Q 204 308 248 344"
+      fill="#111111"
     />
 
     <!-- Right Book Pages Fanning -->
     <path
-      d="M 262 357 
-         Q 342 348 404 362 
-         Q 337 338 262 352"
-      fill="#333333"
+      d="M 264 412 
+         Q 352 400 424 418 
+         Q 347 390 264 406"
+      fill="#111111"
     />
     <path
-      d="M 262 347 
-         Q 337 330 394 348 
-         Q 332 322 262 341"
-      fill="#333333"
+      d="M 264 400 
+         Q 347 380 414 402 
+         Q 340 370 264 393"
+      fill="#111111"
     />
     <path
-      d="M 262 336 
-         Q 332 312 380 334 
-         Q 324 304 262 328"
-      fill="#333333"
+      d="M 264 387 
+         Q 340 358 398 384 
+         Q 330 348 264 377"
+      fill="#111111"
     />
     <path
-      d="M 262 323 
-         Q 324 296 364 318 
-         Q 316 288 262 315"
-      fill="#333333"
+      d="M 264 372 
+         Q 330 338 380 364 
+         Q 320 328 264 360"
+      fill="#111111"
     />
     <path
-      d="M 262 310 
-         Q 316 280 347 304 
-         Q 304 272 262 302"
-      fill="#333333"
+      d="M 264 356 
+         Q 320 318 360 346 
+         Q 308 308 264 344"
+      fill="#111111"
     />
   </g>
 </svg>

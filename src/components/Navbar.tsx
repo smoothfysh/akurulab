@@ -21,20 +21,18 @@ export const Navbar: React.FC<NavbarProps> = ({
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-black/80 backdrop-blur-md border-b border-[#DEE5D4] dark:border-slate-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Brand - Circular AkuruLab Logo */}
+          {/* Brand - Flask Pouring Into Open Book Logo */}
           <a
             href="#"
-            className="flex-shrink-0 flex items-center group focus:outline-none"
+            className="flex-shrink-0 flex items-center group focus:outline-none py-1"
             aria-label="AkuruLab"
             title="AkuruLab"
           >
-            <div className="w-[54px] h-[54px] sm:w-[58px] sm:h-[58px] rounded-full overflow-hidden bg-white flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-              <img
-                src={IMAGES.logo}
-                alt="AkuruLab Logo"
-                className="w-full h-full object-cover scale-[1.18] rounded-full"
-              />
-            </div>
+            <img
+              src="./Flask Pouring Into Open Book Logo.png"
+              alt="AkuruLab Logo"
+              className="h-12 sm:h-14 w-auto max-h-full object-contain dark:brightness-0 dark:invert transition-transform group-hover:scale-105"
+            />
           </a>
 
           {/* Desktop Navigation */}
@@ -125,10 +123,11 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <div className="md:hidden bg-white/95 dark:bg-zinc-900/95 backdrop-blur-lg border-b border-pink-100 dark:border-slate-800 px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="flex items-center gap-3 px-3 py-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-            <div className="w-12 h-12 rounded-full overflow-hidden bg-white flex items-center justify-center">
-              <img src={IMAGES.logo} alt="AkuruLab" className="w-full h-full object-cover scale-[1.18] rounded-full" />
-            </div>
-            <span className="font-semibold text-lg text-slate-800 dark:text-white">AkuruLab</span>
+            <img
+              src="./Flask Pouring Into Open Book Logo.png"
+              alt="AkuruLab Logo"
+              className="h-10 w-auto object-contain dark:brightness-0 dark:invert"
+            />
           </div>
           <a
             href="#about-book"

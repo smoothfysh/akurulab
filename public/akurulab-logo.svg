@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <!-- Rising bubbles floating above tilted flask -->
+  <circle cx="410" cy="85" r="15" fill="#111111" />
+  <circle cx="445" cy="98" r="10" fill="#111111" />
+
+  <!-- Laboratory Flask (Tilted pouring towards book) -->
+  <g transform="rotate(-38 275 185)">
+    <!-- Flask Outline and Body -->
+    <path
+      d="M 252 80 
+         L 252 148 
+         C 204 186, 204 248, 252 286 
+         C 300 324, 364 324, 412 286 
+         C 460 248, 460 186, 412 148 
+         L 412 80 
+         Z"
+      fill="#ffffff"
+      stroke="#111111"
+      stroke-width="16"
+      stroke-linejoin="round"
+    />
+    <!-- Flask Lip / Flanged Rim -->
+    <rect x="240" y="64" width="184" height="22" rx="11" fill="#ffffff" stroke="#111111" stroke-width="16" />
+    
+    <!-- Liquid inside the tilted flask -->
+    <path
+      d="M 218 238
+         C 256 280, 321 292, 366 280
+         C 418 266, 444 238, 444 238
+         C 454 260, 432 298, 400 314
+         C 358 335, 288 330, 246 298
+         C 218 276, 208 254, 218 238
+         Z"
+      fill="#111111"
+    />
+    <!-- Meniscus curved liquid surface line -->
+    <path
+      d="M 218 238 
+         Q 321 214 444 238 
+         Q 331 272 218 238 Z"
+      fill="#111111"
+    />
+  </g>
+
+  <!-- Pouring Droplets from Flask Mouth into Book -->
+  <circle cx="422" cy="275" r="13" fill="#111111" />
+  <circle cx="406" cy="304" r="10" fill="#111111" />
+  <circle cx="414" cy="328" r="8" fill="#111111" />
+  
+  <!-- Splash impact onto the open book page -->
+  <path
+    d="M 382 355 
+       C 376 335, 386 319, 392 335
+       C 400 315, 414 325, 406 347
+       C 418 333, 428 345, 418 361
+       C 406 375, 390 371, 382 355 Z"
+    fill="#111111"
+  />
+
+  <!-- Open Book Beneath Flask -->
+  <g id="book">
+    <!-- Bottom Cover Silhouette -->
+    <path
+      d="M 85 418 
+         Q 192 410 300 404 
+         Q 408 410 515 418 
+         L 515 428 
+         Q 408 420 300 414 
+         Q 192 420 85 428 
+         Z"
+      fill="#111111"
+    />
+    <!-- Center Spine Binding Notch -->
+    <ellipse cx="300" cy="412" rx="20" ry="10" fill="#ffffff" stroke="#111111" stroke-width="6" />
+
+    <!-- Left Book Pages Fanning -->
+    <path
+      d="M 290 402 
+         Q 186 390 100 408 
+         Q 192 378 290 396"
+      fill="#111111"
+    />
+    <path
+      d="M 290 390 
+         Q 192 370 112 392 
+         Q 200 358 290 383"
+      fill="#111111"
+    />
+    <path
+      d="M 290 377 
+         Q 200 348 132 374 
+         Q 212 336 290 367"
+      fill="#111111"
+    />
+    <path
+      d="M 290 362 
+         Q 212 328 152 354 
+         Q 224 316 290 350"
+      fill="#111111"
+    />
+    <path
+      d="M 290 346 
+         Q 224 308 176 336 
+         Q 238 296 290 334"
+      fill="#111111"
+    />
+
+    <!-- Right Book Pages Fanning -->
+    <path
+      d="M 310 402 
+         Q 414 390 500 408 
+         Q 408 378 310 396"
+      fill="#111111"
+    />
+    <path
+      d="M 310 390 
+         Q 408 370 488 392 
+         Q 400 358 310 383"
+      fill="#111111"
+    />
+    <path
+      d="M 310 377 
+         Q 400 348 468 374 
+         Q 388 336 310 367"
+      fill="#111111"
+    />
+    <path
+      d="M 310 362 
+         Q 388 328 448 354 
+         Q 376 316 310 350"
+      fill="#111111"
+    />
+    <path
+      d="M 310 346 
+         Q 376 308 424 336 
+         Q 362 296 310 334"
+      fill="#111111"
+    />
+  </g>
+
+  <!-- AKURU LAB Wordmark with Pen Nib -->
+  <g id="wordmark" transform="translate(48, 470)">
+    <!-- Letter 'A' -->
+    <path d="M 0 45 L 18 0 L 36 45 L 25 45 L 21 34 L 15 34 L 11 45 Z M 18 12 L 16 25 L 20 25 Z" fill="#111111" />
+    
+    <!-- Letter 'K' -->
+    <path d="M 52 0 L 63 0 L 63 20 L 78 0 L 92 0 L 73 22 L 94 45 L 80 45 L 63 26 L 63 45 L 52 45 Z" fill="#111111" />
+    
+    <!-- Letter 'U' -->
+    <path d="M 110 0 L 121 0 L 121 28 C 121 36, 128 40, 136 40 C 144 40, 151 36, 151 28 L 151 0 L 162 0 L 162 28 C 162 42, 150 48, 136 48 C 122 48, 110 42, 110 28 Z" fill="#111111" />
+    
+    <!-- Letter 'R' -->
+    <path d="M 180 0 L 205 0 C 217 0, 226 6, 226 18 C 226 27, 219 33, 208 34 L 227 45 L 214 45 L 197 35 L 191 35 L 191 45 L 180 45 Z M 191 9 L 191 26 L 203 26 C 210 26, 215 23, 215 17 C 215 12, 210 9, 203 9 Z" fill="#111111" />
+    
+    <!-- Letter 'U' with Fountain Pen Nib integrated -->
+    <path d="M 244 0 L 255 0 L 255 28 C 255 36, 262 40, 270 40 C 278 40, 285 36, 285 28 L 285 0 L 296 0 L 296 28 C 296 42, 284 48, 270 48 C 256 48, 244 42, 244 28 Z" fill="#111111" />
+    
+    <!-- Stylized Fountain Pen Nib Symbol Divider -->
+    <g transform="translate(316, 2)">
+      <!-- Nib body -->
+      <path d="M 9 0 L 17 26 C 18 31, 15 36, 15 42 L 3 42 C 3 36, 0 31, 1 26 Z" fill="#111111" />
+      <!-- Nib slit and breather hole -->
+      <circle cx="9" cy="20" r="2.5" fill="#ffffff" />
+      <line x1="9" y1="0" x2="9" y2="20" stroke="#ffffff" stroke-width="1.8" />
+      <rect x="5" y="44" width="8" height="3" fill="#111111" />
+    </g>
+
+    <!-- Letter 'L' -->
+    <path d="M 352 0 L 363 0 L 363 36 L 386 36 L 386 45 L 352 45 Z" fill="#111111" />
+    
+    <!-- Letter 'A' -->
+    <path d="M 404 45 L 422 0 L 440 45 L 429 45 L 425 34 L 419 34 L 415 45 Z M 422 12 L 420 25 L 424 25 Z" fill="#111111" />
+    
+    <!-- Letter 'B' -->
+    <path d="M 458 0 L 483 0 C 493 0, 500 5, 500 13 C 500 19, 495 23, 488 24 C 496 25, 502 29, 502 36 C 502 44, 494 48, 483 48 L 458 48 Z M 469 8 L 469 20 L 480 20 C 486 20, 489 17, 489 14 C 489 11, 486 8, 480 8 Z M 469 28 L 469 40 L 482 40 C 488 40, 491 37, 491 34 C 491 31, 488 28, 482 28 Z" fill="#111111" />
+  </g>
+</svg>

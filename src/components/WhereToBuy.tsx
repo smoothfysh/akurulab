@@ -81,8 +81,13 @@ export const WhereToBuy: React.FC = () => {
                     className="group p-4 rounded-2xl bg-[#fffdf2] dark:bg-slate-800 border border-pink-100 dark:border-slate-700 hover:border-primary/50 hover:bg-pink-50/40 dark:hover:bg-slate-750 hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3.5 min-w-0">
-                      <span className="w-10 h-10 rounded-full bg-white dark:bg-slate-700 shadow-sm border border-pink-100 dark:border-slate-600 flex items-center justify-center text-xl select-none flex-shrink-0">
-                        {store.flag}
+                      <span className="w-10 h-10 rounded-full bg-white dark:bg-slate-700 shadow-sm border border-pink-100 dark:border-slate-600 overflow-hidden flex items-center justify-center flex-shrink-0">
+                        <img
+                          src={`https://flagcdn.com/w80/${store.countryCode.toLowerCase()}.png`}
+                          alt={`${store.countryName} flag`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
                       </span>
                       <div className="min-w-0">
                         <div className="font-bold text-slate-800 dark:text-slate-100 group-hover:text-primary transition-colors text-sm truncate">
@@ -126,8 +131,13 @@ export const WhereToBuy: React.FC = () => {
                     className="group p-4 rounded-2xl bg-[#fffdf2] dark:bg-slate-800 border border-pink-100 dark:border-slate-700 hover:border-primary/50 hover:bg-pink-50/40 dark:hover:bg-slate-755 hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3.5 min-w-0">
-                      <span className="w-10 h-10 rounded-full bg-white dark:bg-slate-700 shadow-sm border border-pink-100 dark:border-slate-600 flex items-center justify-center text-xl select-none flex-shrink-0">
-                        {store.flag}
+                      <span className="w-10 h-10 rounded-full bg-white dark:bg-slate-700 shadow-sm border border-pink-100 dark:border-slate-600 overflow-hidden flex items-center justify-center flex-shrink-0">
+                        <img
+                          src={`https://flagcdn.com/w80/${store.countryCode.toLowerCase()}.png`}
+                          alt={`${store.countryName} flag`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
                       </span>
                       <div className="min-w-0">
                         <div className="font-bold text-slate-800 dark:text-slate-100 group-hover:text-primary transition-colors text-sm truncate">
@@ -148,7 +158,14 @@ export const WhereToBuy: React.FC = () => {
           {/* Croatian Edition Prompt Banner */}
           <div className="mt-10 p-6 sm:p-7 rounded-2xl bg-gradient-to-r from-pink-50/90 via-white to-pink-50/90 dark:from-slate-800 dark:via-slate-800 dark:to-slate-800 border border-pink-100 dark:border-slate-700 text-center flex flex-col sm:flex-row items-center justify-between gap-5 shadow-sm">
             <div className="flex items-center gap-4 text-left">
-              <span className="text-4xl select-none flex-shrink-0">🇭🇷</span>
+              <span className="w-12 h-12 rounded-full overflow-hidden shadow-sm border border-pink-200 dark:border-slate-700 flex-shrink-0 flex items-center justify-center">
+                <img
+                  src="https://flagcdn.com/w80/hr.png"
+                  alt="Croatia flag"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </span>
               <div>
                 <h4 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg">
                   {t.stores.hrPromptTitle}

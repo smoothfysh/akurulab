@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInfo }) => {
             className="text-3xl text-primary font-bold block"
             style={{ fontFamily: "'Dancing Script', cursive" }}
           >
-            Milena
+            AKURU♦LAB
           </span>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             {t.footer.allRights}
