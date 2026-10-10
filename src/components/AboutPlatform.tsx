@@ -1,8 +1,11 @@
 import React from 'react';
 import { FlaskConical, Heart } from 'lucide-react';
 import { IMAGES } from '../data/stores';
+import { useLanguage } from '../context/LanguageContext';
 
 export const AboutPlatform: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section
       id="about-book"
@@ -12,19 +15,19 @@ export const AboutPlatform: React.FC = () => {
         {/* Header & Quote */}
         <div className="text-center mb-16">
           <span className="text-primary font-bold tracking-widest uppercase text-xs inline-block bg-pink-50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-900/50 px-3.5 py-1 rounded-full mb-4">
-            About the Platform
+            {t.platform.badge}
           </span>
           <h2
             className="text-4xl md:text-5xl mb-6 text-slate-900 dark:text-white font-serif tracking-tight"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            Milena's AkuruLab
+            {t.platform.title}
           </h2>
           <blockquote
             className="text-2xl sm:text-3xl md:text-4xl text-[#D96570] max-w-3xl mx-auto leading-snug tracking-wide italic mt-2"
             style={{ fontFamily: "'Dancing Script', cursive" }}
           >
-            “I didn't start writing to be an author; I started writing to find my way back to myself.”
+            {t.platform.quote}
           </blockquote>
         </div>
 
@@ -44,15 +47,8 @@ export const AboutPlatform: React.FC = () => {
             </div>
           </div>
           <div className="w-full md:w-2/3 space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-base md:text-lg">
-            <p>
-              This is my digital playground and creative laboratory. It’s the space where I began
-              tinkering with my own experiences, using writing as a way to process my feelings until
-              those thoughts eventually evolved into my first self-published book.
-            </p>
-            <p>
-              Feel free to poke around the experiments; you might just find the spark to begin your
-              own.
-            </p>
+            <p>{t.platform.labP1}</p>
+            <p>{t.platform.labP2}</p>
           </div>
         </div>
 
@@ -63,11 +59,10 @@ export const AboutPlatform: React.FC = () => {
               <FlaskConical className="w-6 h-6 stroke-[2.2]" />
             </div>
             <h3 className="font-bold text-xl mb-2 text-slate-800 dark:text-slate-100">
-              Creative Alchemy
+              {t.platform.card1Title}
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 opacity-80 leading-relaxed">
-              Nurturing raw, unfiltered human experiences into beautifully crafted works of
-              literature and inspiring art.
+              {t.platform.card1Desc}
             </p>
           </div>
 
@@ -76,11 +71,10 @@ export const AboutPlatform: React.FC = () => {
               <Heart className="w-6 h-6 stroke-[2.2]" />
             </div>
             <h3 className="font-bold text-xl mb-2 text-slate-800 dark:text-slate-100">
-              Healing &amp; Expression
+              {t.platform.card2Title}
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 opacity-80 leading-relaxed">
-              A welcoming lab where personal resilience is transformed into strength, shared
-              understanding, and empathy.
+              {t.platform.card2Desc}
             </p>
           </div>
         </div>

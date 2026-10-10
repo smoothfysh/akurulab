@@ -1,12 +1,16 @@
 import React from 'react';
 import { IMAGES } from '../data/stores';
-import { ShoppingCart, BookOpen, Sparkles, Eye } from 'lucide-react';
+import { ShoppingCart, BookOpen, Sparkles, Eye, ShoppingBag } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface BookHeroProps {
   onOpenExcerpt: () => void;
+  onOpenCroatianOrder: () => void;
 }
 
-export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt }) => {
+export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt, onOpenCroatianOrder }) => {
+  const { language, t } = useLanguage();
+
   return (
     <header className="hero-section py-20 md:py-28 px-4 relative overflow-hidden bg-gradient-to-b from-[#F2F5EC] to-[#EFF3E6] dark:from-zinc-950 dark:to-zinc-900 border-y border-[#DEE5D4]/60 dark:border-slate-800 transition-colors duration-300">
       {/* Decorative watercolor background ambient blurs */}
@@ -34,11 +38,11 @@ export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt }) => {
                   maxWidth: '85vw',
                 }}
               >
-                {/* Book Cover Image */}
+                {/* Book Cover Image - adaptive to language */}
                 <img
-                  src={IMAGES.bookEnglish}
-                  alt="It's Just Tits - Book Cover by Milena"
-                  className="w-full h-auto block select-none rounded-r-sm"
+                  src={language === 'hr' ? IMAGES.bookCroatian : IMAGES.bookEnglish}
+                  alt={language === 'hr' ? 'To su samo sise - Naslovnica knjige' : "It's Just Tits - Book Cover by Milena"}
+                  className="w-full h-auto block select-none rounded-r-sm transition-opacity duration-300"
                   style={{ aspectRatio: '1600/2560', objectFit: 'cover' }}
                 />
 
@@ -69,52 +73,72 @@ export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt }) => {
         <div className="w-full md:w-1/2 text-center md:text-left">
           <div className="inline-flex items-center gap-1.5 text-primary text-xs font-semibold uppercase tracking-wider bg-pink-50 dark:bg-pink-900/30 border border-pink-200 dark:border-pink-800/60 px-3.5 py-1 rounded-full mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Self-Published Memoir &amp; Art</span>
+            <span>{t.hero.badge}</span>
           </div>
 
           <h1
             className="text-5xl sm:text-6xl md:text-7xl text-primary mb-4 leading-tight"
             style={{ fontFamily: "'Dancing Script', cursive" }}
           >
-            It's just tits
+            {t.hero.title}
           </h1>
 
           <h2
             className="text-2xl sm:text-3xl italic mb-6 text-slate-700 dark:text-slate-200"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            A journey of resilience, art, and reclaiming womanhood.
+            {t.hero.subtitle}
           </h2>
 
           <p className="text-base sm:text-lg mb-8 max-w-xl mx-auto md:mx-0 text-slate-600 dark:text-slate-300 leading-relaxed">
-            A raw and beautiful exploration of breast cancer recovery. Milena
-            shares her story not just through words, but through the vibrant
-            watercolor lens of healing.
+            {t.hero.description}
           </p>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            <a
-              href="#where-to-buy"
-              className="bg-primary hover:bg-[#d84868] text-white px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              <span>Buy Kindle Edition</span>
-            </a>
+            {language === 'hr' ? (
+              <>
+                <button
+                  onClick={onOpenCroatianOrder}
+                  className="bg-primary hover:bg-[#d84868] text-white px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
+                >
+                  <ShoppingBag className="w-5 h-5" />
+                  <span>{t.croatianSection.orderBtn}</span>
+                </button>
 
-            <a
-              href="#where-to-buy"
-              className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white border-2 border-pink-100 dark:border-slate-700 hover:border-primary px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
-            >
-              <BookOpen className="w-5 h-5 text-primary" />
-              <span>Order Paperback</span>
-            </a>
+                <a
+                  href="#where-to-buy"
+                  className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white border-2 border-pink-100 dark:border-slate-700 hover:border-primary px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
+                >
+                  <ShoppingCart className="w-5 h-5 text-primary" />
+                  <span>Amazon (Englesko izdanje)</span>
+                </a>
+              </>
+            ) : (
+              <>
+                <a
+                  href="#where-to-buy"
+                  className="bg-primary hover:bg-[#d84868] text-white px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                  <span>{t.hero.buyKindle}</span>
+                </a>
+
+                <a
+                  href="#where-to-buy"
+                  className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white border-2 border-pink-100 dark:border-slate-700 hover:border-primary px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
+                >
+                  <BookOpen className="w-5 h-5 text-primary" />
+                  <span>{t.hero.orderPaperback}</span>
+                </a>
+              </>
+            )}
 
             <button
               onClick={onOpenExcerpt}
               className="px-6 py-3.5 rounded-full text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary border border-slate-300 dark:border-slate-700 hover:border-primary/50 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm transition-all flex items-center gap-2 text-sm font-medium cursor-pointer"
             >
               <Eye className="w-4 h-4 text-primary" />
-              <span>Preview Excerpt</span>
+              <span>{t.hero.previewExcerpt}</span>
             </button>
           </div>
         </div>

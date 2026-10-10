@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { AboutPlatform } from './components/AboutPlatform';
 import { AboutAuthor } from './components/AboutAuthor';
@@ -15,14 +16,13 @@ import { OrderModal } from './components/OrderModal';
 import { ExcerptModal } from './components/ExcerptModal';
 import { InfoModal, InfoModalType } from './components/InfoModal';
 
-export default function App() {
+function AppContent() {
   const [isDark, setIsDark] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('milena_theme');
       if (saved) return saved === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
-    return false;
+    return false; // Default to light mode
   });
 
   const [isOrderOpen, setIsOrderOpen] = useState(false);
@@ -63,8 +63,11 @@ export default function App() {
         {/* Section 2: Meet the Author */}
         <AboutAuthor onContactClick={() => setInfoModal('contact')} />
 
-        {/* Section 3: Book Showcase Hero ("It's just tits") */}
-        <BookHero onOpenExcerpt={() => setIsExcerptOpen(true)} />
+        {/* Section 3: Book Showcase Hero ("It's just tits" / "To su samo sise") */}
+        <BookHero
+          onOpenExcerpt={() => setIsExcerptOpen(true)}
+          onOpenCroatianOrder={() => setIsOrderOpen(true)}
+        />
 
         {/* Section 4: Global Availability - Amazon Stores */}
         <WhereToBuy />
@@ -89,5 +92,13 @@ export default function App() {
       {/* Footer Info Modals (Privacy, Shipping, Terms, Contact) */}
       <InfoModal type={infoModal} onClose={() => setInfoModal(null)} />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { EUROPE_STORES, WORLD_STORES, AmazonStore } from '../data/stores';
 import { Globe, ArrowRight, ArrowDown, Search } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const WhereToBuy: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const { t } = useLanguage();
 
   const filterStore = (store: AmazonStore) => {
     if (!searchTerm.trim()) return true;
@@ -27,16 +29,16 @@ export const WhereToBuy: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-14">
           <span className="text-primary font-bold tracking-widest uppercase text-xs inline-block bg-pink-50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-900/40 px-3.5 py-1 rounded-full mb-3">
-            Global Availability
+            {t.stores.badge}
           </span>
           <h2
             className="text-4xl md:text-5xl mb-4 text-slate-900 dark:text-white"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            Order the English Edition
+            {t.stores.title}
           </h2>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-            Available worldwide in Kindle &amp; Paperback on your local Amazon store. Select your region below:
+            {t.stores.description}
           </p>
 
           {/* Quick country search filter */}
@@ -46,7 +48,7 @@ export const WhereToBuy: React.FC = () => {
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Filter by country (e.g. UK, Germany, US)..."
+              placeholder={t.stores.searchPlaceholder}
               className="w-full pl-10 pr-4 py-2.5 rounded-full border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:border-primary transition-colors"
             />
           </div>
@@ -62,10 +64,10 @@ export const WhereToBuy: React.FC = () => {
                   className="text-2xl font-semibold text-slate-800 dark:text-slate-100"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
-                  Europe
+                  {t.stores.europe}
                 </h3>
                 <span className="text-xs text-slate-500 dark:text-slate-400 bg-[#fffdf2] dark:bg-slate-800 border border-pink-100 dark:border-slate-700 px-2.5 py-0.5 rounded-full ml-auto sm:ml-0">
-                  {filteredEurope.length} {filteredEurope.length === 1 ? 'store' : 'stores'}
+                  {filteredEurope.length} {filteredEurope.length === 1 ? t.stores.storeCount : t.stores.storesCount}
                 </span>
               </div>
 
@@ -87,7 +89,7 @@ export const WhereToBuy: React.FC = () => {
                           {store.storeName}
                         </div>
                         <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                          {store.formats}
+                          {t.stores.formats}
                         </div>
                       </div>
                     </div>
@@ -107,10 +109,10 @@ export const WhereToBuy: React.FC = () => {
                   className="text-2xl font-semibold text-slate-800 dark:text-slate-100"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
-                  Rest of the World
+                  {t.stores.world}
                 </h3>
                 <span className="text-xs text-slate-500 dark:text-slate-400 bg-[#fffdf2] dark:bg-slate-800 border border-pink-100 dark:border-slate-700 px-2.5 py-0.5 rounded-full ml-auto sm:ml-0">
-                  {filteredWorld.length} {filteredWorld.length === 1 ? 'store' : 'stores'}
+                  {filteredWorld.length} {filteredWorld.length === 1 ? t.stores.storeCount : t.stores.storesCount}
                 </span>
               </div>
 
@@ -121,7 +123,7 @@ export const WhereToBuy: React.FC = () => {
                     href={store.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group p-4 rounded-2xl bg-[#fffdf2] dark:bg-slate-800 border border-pink-100 dark:border-slate-700 hover:border-primary/50 hover:bg-pink-50/40 dark:hover:bg-slate-750 hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-between"
+                    className="group p-4 rounded-2xl bg-[#fffdf2] dark:bg-slate-800 border border-pink-100 dark:border-slate-700 hover:border-primary/50 hover:bg-pink-50/40 dark:hover:bg-slate-755 hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3.5 min-w-0">
                       <span className="w-10 h-10 rounded-full bg-white dark:bg-slate-700 shadow-sm border border-pink-100 dark:border-slate-600 flex items-center justify-center text-xl select-none flex-shrink-0">
@@ -132,7 +134,7 @@ export const WhereToBuy: React.FC = () => {
                           {store.storeName}
                         </div>
                         <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                          {store.formats}
+                          {t.stores.formats}
                         </div>
                       </div>
                     </div>
@@ -149,17 +151,10 @@ export const WhereToBuy: React.FC = () => {
               <span className="text-4xl select-none flex-shrink-0">🇭🇷</span>
               <div>
                 <h4 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg">
-                  Tražite hrvatsko izdanje?
+                  {t.stores.hrPromptTitle}
                 </h4>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
-                  Knjiga{' '}
-                  <span
-                    className="italic text-primary font-bold"
-                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                  >
-                    &ldquo;To su samo sise&rdquo;
-                  </span>{' '}
-                  dostupna je za izravnu narudžbu s brzom dostavom unutar Hrvatske.
+                  {t.stores.hrPromptDesc}
                 </p>
               </div>
             </div>
@@ -167,7 +162,7 @@ export const WhereToBuy: React.FC = () => {
               href="#hrvatski"
               className="inline-flex items-center gap-2 bg-primary hover:bg-[#d84868] text-white text-sm font-semibold px-6 py-3 rounded-full shadow hover:shadow-lg transition-all hover:scale-105 flex-shrink-0"
             >
-              <span>Pogledaj hrvatsko izdanje</span>
+              <span>{t.stores.hrPromptBtn}</span>
               <ArrowDown className="w-4 h-4" />
             </a>
           </div>

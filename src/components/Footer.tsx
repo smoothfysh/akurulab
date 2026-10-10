@@ -1,11 +1,14 @@
 import React from 'react';
 import { InfoModalType } from './InfoModal';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FooterProps {
   onOpenInfo: (type: InfoModalType) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenInfo }) => {
+  const { t } = useLanguage();
+
   return (
     <footer className="py-12 px-4 border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-black/60 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
@@ -17,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInfo }) => {
             Milena
           </span>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-            © 2026 AkuruLab. All rights reserved.
+            {t.footer.allRights}
           </p>
         </div>
 
@@ -26,31 +29,31 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInfo }) => {
             onClick={() => onOpenInfo('privacy')}
             className="hover:text-primary transition-colors cursor-pointer"
           >
-            Privacy Policy
+            {t.footer.privacyPolicy}
           </button>
           <button
             onClick={() => onOpenInfo('shipping')}
             className="hover:text-primary transition-colors cursor-pointer"
           >
-            Shipping Info
+            {t.footer.shippingInfo}
           </button>
           <button
             onClick={() => onOpenInfo('terms')}
             className="hover:text-primary transition-colors cursor-pointer"
           >
-            Terms of Sale
+            {t.footer.termsOfSale}
           </button>
           <button
             onClick={() => onOpenInfo('contact')}
             className="hover:text-primary transition-colors cursor-pointer"
           >
-            Contact
+            {t.footer.contact}
           </button>
         </div>
 
         <div className="flex items-center gap-4">
           <span className="text-sm text-slate-400 italic">
-            Created with love &amp; watercolors
+            {t.footer.createdWithLove}
           </span>
         </div>
       </div>

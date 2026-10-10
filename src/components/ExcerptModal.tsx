@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, BookOpen, Quote } from 'lucide-react';
-import { IMAGES } from '../data/stores';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ExcerptModalProps {
   isOpen: boolean;
@@ -13,40 +13,13 @@ export const ExcerptModal: React.FC<ExcerptModalProps> = ({
   onClose,
   onOrderClick,
 }) => {
+  const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(0);
 
   if (!isOpen) return null;
 
-  const pages = [
-    {
-      title: 'Prologue: Finding The Colors Again',
-      quote: 'When the diagnosis hit, everything became medical terminology and black-and-white scan results. But the soul cannot heal in greyscale.',
-      content: [
-        'I held the cold manila folder with trembling hands. In a single second, the rhythm of my everyday life shattered into a thousand jagged pieces.',
-        'Nobody prepares you for the silence that follows. The kind of silence where every breath sounds loud, and your own heartbeat feels like a ticking countdown.',
-        'That evening, instead of drowning in despair, I picked up an old brush and dipping water into pink and gold pigments. The water blossomed on the paper. For the first time in weeks, I could exhale.',
-      ],
-    },
-    {
-      title: 'Chapter 1: "It’s Just Tits"',
-      quote: 'They are soft, they are fragile, they are human. But they do not hold the deed to who I am.',
-      content: [
-        'People tiptoed around the word. They whispered it in hospital waiting rooms like a curse. But humor and truth became my armor.',
-        'One morning in front of the bathroom mirror, looking at the surgical marks mapped across my chest like constellations, I said it out loud: "It’s just tits."',
-        'Saying it wasn’t diminishing the pain; it was disarming the monster. It was reminding myself that dignity, laughter, passion, and love lived so much deeper than flesh and bone.',
-      ],
-    },
-    {
-      title: 'A Message to Every Warrior',
-      quote: 'You are allowed to be tired. You are allowed to be angry. And you are allowed to rebuild yourself with gold in the cracks.',
-      content: [
-        'To every woman standing before an uncertain path: you are not walking alone. Thousands of hands reach out across miles and oceans.',
-        'This book is a letter, a mirror, and an embrace. May its pages give you permission to breathe, to paint outside the lines, and to reclaim every radiant piece of yourself.',
-      ],
-    },
-  ];
-
-  const current = pages[currentPage];
+  const pages = t.excerpt.pages;
+  const current = pages[currentPage] || pages[0];
 
   return (
     <div
@@ -67,7 +40,7 @@ export const ExcerptModal: React.FC<ExcerptModalProps> = ({
               className="text-xl font-bold text-primary"
               style={{ fontFamily: "'Dancing Script', cursive" }}
             >
-              It's Just Tits — Excerpt
+              {t.excerpt.modalTitle}
             </span>
           </div>
           <button
@@ -112,7 +85,7 @@ export const ExcerptModal: React.FC<ExcerptModalProps> = ({
               <ChevronLeft className="w-4 h-4" />
             </button>
             <span>
-              Page {currentPage + 1} of {pages.length}
+              {t.excerpt.page} {currentPage + 1} {t.excerpt.of} {pages.length}
             </span>
             <button
               onClick={() => setCurrentPage((prev) => Math.min(pages.length - 1, prev + 1))}
@@ -132,7 +105,7 @@ export const ExcerptModal: React.FC<ExcerptModalProps> = ({
               }}
               className="bg-primary hover:bg-[#d84868] text-white px-5 py-2.5 rounded-full font-semibold text-sm shadow hover:shadow-md transition-all cursor-pointer"
             >
-              Order Full Book
+              {t.excerpt.orderFullBook}
             </button>
           </div>
         </div>
