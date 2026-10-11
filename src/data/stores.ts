@@ -118,5 +118,5 @@ export const IMAGES = {
   author: './author-milena.jpg',
   bookEnglish: 'https://lh3.googleusercontent.com/aida/AEtjO1XetkI8f_ptDLhazWSZjyMZy_Yn2AuVwqT38nVubbfBBxrC1NwF9jF6yw4QNcXEkClLA3OHSbk4SjFzqxrHvtWbfqt25P6t4t8Llgt5mV5ypSyKG3kCKus3Pozzw2hDP3boo38LNwmY6bMaRB1snWAL6rqvyTRK0_eSLn_2QpbgtuBoD_cPiA4z7keucOvMoazFx-xter0JNOe5SDr0uc6HLJnT2_J3519KpEpdrP1dyN1j8qi0IcPcaXqjRG62zPy4HJ8yNjL1rQ',
   bookCroatian: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBg-VqxeKoSnGs8bAXzNBS9RDgzvV3o0vjZ6hbYo_Nr9lYij6ZmTwKQ2N22e2C4jY9ry8OnasemfB-VthbbprVE9ygR70JQ-0G8t_eT3VxDP4I1N4l5lvzq85242dRzS_SSTCaQj7LGLs7z9QCOZw9GjDDrbdz-tK6uLhjxuxoqo_KeumkmIz-5Nu9F3rLFBPsZWmBLFR0wKYeTzGZsHBd7zFqqjAroNgSpPzFGZwEeOH3M8DWUR-K-hp9KDORhEwb7MA',
-  journey: './A Life Journey in Watercolour_v2.jpg',
+  journey: './A Life Journey in Watercolour_v4.jpg',
 };

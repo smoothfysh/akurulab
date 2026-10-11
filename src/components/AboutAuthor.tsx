@@ -9,7 +9,7 @@ interface AboutAuthorProps {
 
 export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
   const { t } = useLanguage();
-  const [journeyImageSrc, setJourneyImageSrc] = useState('./A Life Journey in Watercolour_v2.jpg');
+  const [journeyImageSrc, setJourneyImageSrc] = useState(IMAGES.journey);
   const [imageFailedToLoad, setImageFailedToLoad] = useState(false);
 
   const handleLocalFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,7 +97,7 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
               {t.author.journeyTitle}
             </h3>
             <p
-              className="text-xl sm:text-2xl text-[#D96570] max-w-xl mx-auto italic mb-8"
+              className="text-2xl sm:text-3xl md:text-4xl text-[#D96570] max-w-2xl mx-auto italic mb-8 leading-snug"
               style={{ fontFamily: "'Dancing Script', cursive" }}
             >
               {t.author.journeySubtitle}
@@ -122,7 +122,7 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
                     A Life Journey in Watercolour
                   </h4>
                   <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
-                    The image is looking for <code className="bg-white dark:bg-slate-700 px-2 py-0.5 rounded text-xs font-mono text-primary font-bold">/public/A Life Journey in Watercolour_v3.jpg</code> in your repository.
+                    The image is looking for <code className="bg-white dark:bg-slate-700 px-2 py-0.5 rounded text-xs font-mono text-primary font-bold">/public/A Life Journey in Watercolour_v4.jpg</code> in your repository.
                   </p>
                   <div className="pt-2">
                     <label

@@ -11,7 +11,6 @@ import {
   Users,
   ChevronDown,
   Sparkles,
-  ShieldCheck,
   Award,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -284,9 +283,8 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
 
             {/* Right: Key Benefits Card */}
             <div className="w-full lg:w-2/5 bg-white/90 dark:bg-slate-800/95 rounded-2xl p-6 sm:p-8 border border-emerald-100 dark:border-slate-700 shadow-md">
-              <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-5 flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                <span>{t.healingPage.charityBeneficialTitle}</span>
+              <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-5">
+                {t.healingPage.charityBeneficialTitle}
               </h3>
 
               <div className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
@@ -418,15 +416,36 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
           ))}
         </div>
 
-        {/* YouTube Channel Banner */}
-        <div className="mt-8 text-center">
+        {/* Platforms & Channels CTAs (YouTube & Spotify) */}
+        <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          {/* YouTube Channel CTA */}
           <a
             href="https://www.youtube.com/@GeaKafePodcast"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all group"
           >
+            <div className="w-8 h-8 rounded-full bg-white text-red-600 flex items-center justify-center transition-transform group-hover:scale-110 shadow-xs flex-shrink-0">
+              <Youtube className="w-4 h-4 fill-current" />
+            </div>
             <span>{t.healingPage.visitYoutubeChannel}</span>
+            <ExternalLink className="w-4 h-4 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all flex-shrink-0 ml-0.5" />
+          </a>
+
+          {/* Spotify Podcast CTA */}
+          <a
+            href="https://open.spotify.com/show/0340FjcnjSdtzmUWnG4361"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#1DB954] hover:bg-[#1aa34a] text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all group"
+          >
+            <div className="w-8 h-8 rounded-full bg-white text-[#1DB954] flex items-center justify-center transition-transform group-hover:scale-110 shadow-xs flex-shrink-0">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.497 17.306c-.215.352-.676.464-1.028.249-2.817-1.722-6.363-2.111-10.54-1.157-.402.092-.801-.16-.893-.562-.092-.403.16-.802.562-.894 4.571-1.044 8.492-.598 11.65 1.336.352.215.464.676.249 1.028zm1.468-3.264c-.27.44-.848.58-1.288.31-3.225-1.982-8.142-2.557-11.958-1.399-.499.152-1.03-.135-1.181-.634-.152-.499.135-1.03.634-1.181 4.364-1.325 9.791-.684 13.483 1.586.44.27.58.848.31 1.288zm.126-3.41c-3.867-2.296-10.248-2.508-13.941-1.387-.593.18-1.22-.16-1.4-.753-.18-.593.16-1.22.753-1.4 4.246-1.289 11.295-1.042 15.753 1.604.533.316.708 1.011.392 1.544-.316.533-1.011.708-1.544.392z" />
+              </svg>
+            </div>
+            <span>{t.healingPage.listenOnSpotify}</span>
+            <ExternalLink className="w-4 h-4 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all flex-shrink-0 ml-0.5" />
           </a>
         </div>
       </section>
