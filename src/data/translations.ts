@@ -265,7 +265,7 @@ export const translations = {
       title: 'To su samo sise',
       subtitle: 'Put otpornosti i ponovnog osvajanja ženstvenosti.',
       description:
-        'Rak nije bio nikakvo poetsko buđenje—bio je težak, kaotičan i duboko emotivan. U ovom sirovom istraživanju oporavka dijelim kako sam se putem potpuno izgubila, morala ogoliti sve do temelja i polako se ponovno izgraditi. Ispričana kroz moju priču i živopisnu akvarelnu prizmu iscjeljenja, ova knjiga ne uljepšava borbu. Riječ je o tome kako iz svega izaći snažniji i mudriji te prenijeti teško stečene lekcije kako ne biste morali raditi iste greške koje sam napravila ja.',
+        'Rak nije bio nikakvo poetsko buđenje; bio je težak, kaotičan i duboko emotivan. U ovom sirovom putovanju oporavka dijelim kako sam se putem potpuno izgubila, morala ogoliti sve do temelja i polako se ponovno izgraditi. Ispričana kroz moju priču i živopisnu akvarelnu prizmu iscjeljenja, ova knjiga ne uljepšava borbu. Cilj je pokazati kako iz svega izaći snažniji i mudriji;  prenoseći lekcije koje vas mogu poštedjeti mojih grešaka.',
       buyKindle: 'Kupi englesko izdanje na Amazonu',
       orderPaperback: 'Knjiga na hrvatskom',
       previewExcerpt: 'Prolistaj ulomak',
