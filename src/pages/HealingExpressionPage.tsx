@@ -216,123 +216,131 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
   };
 
   return (
-    <div className="pt-20 md:pt-24 pb-20 animate-in fade-in duration-300">
-      {/* Hero Header */}
-      <section className="max-w-5xl mx-auto px-4 text-center mb-16 md:mb-20">
-        <h1
-          className="text-4xl sm:text-5xl md:text-6xl text-slate-900 dark:text-white mb-6 font-serif tracking-tight"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-        >
-          {t.healingPage.title}
-        </h1>
+    <div className="pt-16 animate-in fade-in duration-300">
+      {/* Section 1: Hero & Dedication to KLUB GEA Pula (Pale Olive Green) */}
+      <section className="py-16 md:py-24 px-4 relative overflow-hidden bg-gradient-to-b from-[#F2F5EC] to-[#EFF3E6] dark:from-zinc-950 dark:to-zinc-900 border-b border-[#DEE5D4]/60 dark:border-slate-800 transition-colors duration-300">
+        {/* Decorative subtle ambient blurs matching BookHero */}
+        <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-emerald-200/20 dark:bg-emerald-900/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-yellow-100/30 dark:bg-yellow-900/10 rounded-full blur-3xl pointer-events-none" />
 
-        <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-          {t.healingPage.subtitle}
-        </p>
-      </section>
+        <div className="max-w-6xl mx-auto relative z-10">
+          {/* Hero Header */}
+          <div className="max-w-5xl mx-auto text-center mb-14 md:mb-16">
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl text-slate-900 dark:text-white mb-6 font-serif tracking-tight"
+              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            >
+              {t.healingPage.title}
+            </h1>
 
-      {/* Section 1: Dedication to KLUB GEA Pula (Prominent & Heartfelt) */}
-      <section className="max-w-6xl mx-auto px-4 mb-20 md:mb-24">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#EFF3E6] via-white to-[#F8FAF4] dark:from-slate-900 dark:via-slate-800/90 dark:to-slate-900 border-2 border-emerald-200/70 dark:border-emerald-800/50 shadow-xl p-8 sm:p-12 md:p-14">
-          {/* Ambient Glow */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-300/20 dark:bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              {t.healingPage.subtitle}
+            </p>
+          </div>
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
-            {/* Left: Badge & Mission */}
-            <div className="w-full lg:w-3/5 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider border border-emerald-200 dark:border-emerald-800">
-                <Award className="w-3.5 h-3.5" />
-                <span>{t.healingPage.charityBadge}</span>
+          {/* Dedication to KLUB GEA Pula Card */}
+          <div className="relative rounded-3xl overflow-hidden bg-white/95 dark:bg-slate-800/95 border-2 border-emerald-200/80 dark:border-emerald-800/60 shadow-xl p-8 sm:p-12 md:p-14">
+            {/* Ambient Glow */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-300/20 dark:bg-emerald-600/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
+              {/* Left: Badge & Mission */}
+              <div className="w-full lg:w-3/5 space-y-6 text-left">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider border border-emerald-200 dark:border-emerald-800">
+                  <Award className="w-3.5 h-3.5" />
+                  <span>{t.healingPage.charityBadge}</span>
+                </div>
+
+                <div>
+                  <h2
+                    className="text-3xl sm:text-4xl md:text-5xl text-slate-900 dark:text-white font-bold mb-2"
+                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  >
+                    {t.healingPage.charityTitle}
+                  </h2>
+                  <p className="text-sm sm:text-base font-semibold text-emerald-700 dark:text-emerald-400">
+                    {t.healingPage.charitySubtitle}
+                  </p>
+                </div>
+
+                <div className="space-y-4 text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed">
+                  <p>{t.healingPage.charityBlurb1}</p>
+                  <p>{t.healingPage.charityBlurb2}</p>
+                </div>
+
+                <div className="pt-2">
+                  <a
+                    href="https://geapula.hr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-base cursor-pointer"
+                  >
+                    <Heart className="w-5 h-5 fill-current" />
+                    <span>{t.healingPage.charityBtn}</span>
+                    <ExternalLink className="w-4 h-4 ml-1" />
+                  </a>
+                </div>
               </div>
 
-              <div>
-                <h2
-                  className="text-3xl sm:text-4xl md:text-5xl text-slate-900 dark:text-white font-bold mb-2"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                >
-                  {t.healingPage.charityTitle}
-                </h2>
-                <p className="text-sm sm:text-base font-semibold text-emerald-700 dark:text-emerald-400">
-                  {t.healingPage.charitySubtitle}
-                </p>
-              </div>
+              {/* Right: Key Benefits Card */}
+              <div className="w-full lg:w-2/5 bg-[#F8FAF4] dark:bg-slate-900/90 rounded-2xl p-6 sm:p-8 border border-emerald-100/90 dark:border-slate-700 shadow-md">
+                <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-5">
+                  {t.healingPage.charityBeneficialTitle}
+                </h3>
 
-              <div className="space-y-4 text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed">
-                <p>{t.healingPage.charityBlurb1}</p>
-                <p>{t.healingPage.charityBlurb2}</p>
-              </div>
-
-              <div className="pt-2">
-                <a
-                  href="https://geapula.hr/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-base cursor-pointer"
-                >
-                  <Heart className="w-5 h-5 fill-current" />
-                  <span>{t.healingPage.charityBtn}</span>
-                  <ExternalLink className="w-4 h-4 ml-1" />
-                </a>
-              </div>
-            </div>
-
-            {/* Right: Key Benefits Card */}
-            <div className="w-full lg:w-2/5 bg-white/90 dark:bg-slate-800/95 rounded-2xl p-6 sm:p-8 border border-emerald-100 dark:border-slate-700 shadow-md">
-              <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-5">
-                {t.healingPage.charityBeneficialTitle}
-              </h3>
-
-              <div className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
-                {[
-                  t.healingPage.charityBeneficial1,
-                  t.healingPage.charityBeneficial2,
-                  t.healingPage.charityBeneficial3,
-                  t.healingPage.charityBeneficial4,
-                ].map((item, idx) => {
-                  const colonIndex = item.indexOf(':');
-                  if (colonIndex !== -1) {
-                    const title = item.slice(0, colonIndex + 1);
-                    const rest = item.slice(colonIndex + 1);
+                <div className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
+                  {[
+                    t.healingPage.charityBeneficial1,
+                    t.healingPage.charityBeneficial2,
+                    t.healingPage.charityBeneficial3,
+                    t.healingPage.charityBeneficial4,
+                  ].map((item, idx) => {
+                    const colonIndex = item.indexOf(':');
+                    if (colonIndex !== -1) {
+                      const title = item.slice(0, colonIndex + 1);
+                      const rest = item.slice(colonIndex + 1);
+                      return (
+                        <div key={idx} className="flex items-start gap-3">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                          <span className="leading-relaxed">
+                            <strong className="font-semibold text-slate-900 dark:text-white">
+                              {title}
+                            </strong>
+                            {rest}
+                          </span>
+                        </div>
+                      );
+                    }
                     return (
                       <div key={idx} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                        <span className="leading-relaxed">
-                          <strong className="font-semibold text-slate-900 dark:text-white">
-                            {title}
-                          </strong>
-                          {rest}
-                        </span>
+                        <span className="leading-relaxed">{item}</span>
                       </div>
                     );
-                  }
-                  return (
-                    <div key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                      <span className="leading-relaxed">{item}</span>
-                    </div>
-                  );
-                })}
-              </div>
+                  })}
+                </div>
 
-              <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-700 text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
-                <span>Pula, Istra, Hrvatska</span>
-                <a
-                  href="https://geapula.hr/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
-                >
-                  geapula.hr ↗
-                </a>
+                <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-700 text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
+                  <span>Pula, Istra, Hrvatska</span>
+                  <a
+                    href="https://geapula.hr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                  >
+                    geapula.hr ↗
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 2: Podcasts & Conversations (YouTube) */}
-      <section className="w-full max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-24">
-        <div className="text-center mb-12">
+      {/* Section 2: Podcasts & Conversations (YouTube) - White */}
+      <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-white dark:bg-zinc-900 border-b border-[#DEE5D4]/60 dark:border-slate-800 transition-colors duration-300">
+        <div className="w-full max-w-[1560px] mx-auto">
+          <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pink-50 dark:bg-pink-900/30 text-primary text-xs font-bold uppercase tracking-wider mb-3 border border-pink-200 dark:border-pink-800">
             <Youtube className="w-4 h-4" />
             <span>{t.healingPage.podcastsBadge}</span>
@@ -443,10 +451,12 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
             <ExternalLink className="w-4 h-4 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all flex-shrink-0 ml-0.5" />
           </a>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Section 3: Tips for Newly Diagnosed & Surgery Packing Guide */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section 3: Practical Essentials & Surgery Guide (Pale Olive Green) */}
+    <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-[#EFF3E6] dark:bg-zinc-950 transition-colors duration-300">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pink-50 dark:bg-pink-900/30 text-primary text-xs font-bold uppercase tracking-wider mb-3 border border-pink-200 dark:border-pink-800">
             <Sparkles className="w-3.5 h-3.5" />
@@ -480,7 +490,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 activeFaqFilter === tab.id
                   ? 'bg-primary text-white shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-700'
+                  : 'bg-white/90 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-[#DEE5D4] dark:border-slate-700 hover:border-primary/50 shadow-xs'
               }`}
             >
               {tab.label}
@@ -534,7 +544,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
         </div>
 
         {/* Bottom encouragement message */}
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-pink-50/70 dark:bg-pink-950/20 border border-pink-100 dark:border-pink-900/40 text-center space-y-3">
+        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-pink-200/70 dark:border-pink-900/40 text-center space-y-3 shadow-xs">
           <p
             className="text-2xl sm:text-3xl text-primary"
             style={{ fontFamily: "'Dancing Script', cursive" }}
@@ -549,7 +559,8 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
               : 'With warmth & solidarity, Milena & AkuruLab'}
           </p>
         </div>
-      </section>
-    </div>
-  );
+      </div>
+    </section>
+  </div>
+);
 };
