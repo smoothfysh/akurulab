@@ -22,7 +22,7 @@ export const translations = {
       labP1: "This is my digital playground and creative laboratory. It's the space where I began tinkering with my own experiences, using writing as a way to process my feelings until those thoughts eventually evolved into my first self-published book.",
       labP2: "Feel free to poke around the experiments; you might just find the spark to begin your own.",
       card1Title: 'Creative Alchemy',
-      card1Desc: 'Nurturing raw, unfiltered human experiences into beautifully crafted works of literature and inspiring art.',
+      card1Desc: 'Nurturing raw, unfiltered human experiences into works of literature and maybe even considered art that hopefully inspires atleast one person.',
       card1Action: 'Explore Creative Alchemy →',
       card2Title: 'Healing & Expression',
       card2Desc: 'A welcoming lab where personal resilience is transformed into strength, shared understanding, and empathy.',
