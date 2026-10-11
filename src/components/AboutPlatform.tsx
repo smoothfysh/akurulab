@@ -5,9 +5,13 @@ import { useLanguage } from '../context/LanguageContext';
 
 interface AboutPlatformProps {
   onOpenCreativeAlchemy: () => void;
+  onOpenHealingExpression?: () => void;
 }
 
-export const AboutPlatform: React.FC<AboutPlatformProps> = ({ onOpenCreativeAlchemy }) => {
+export const AboutPlatform: React.FC<AboutPlatformProps> = ({
+  onOpenCreativeAlchemy,
+  onOpenHealingExpression,
+}) => {
   const { t } = useLanguage();
 
   return (
@@ -90,17 +94,36 @@ export const AboutPlatform: React.FC<AboutPlatformProps> = ({ onOpenCreativeAlch
             </span>
           </div>
 
-          {/* Card 2: Healing & Expression */}
-          <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl border border-pink-100 dark:border-slate-700 shadow-sm hover:border-primary/40 hover:-translate-y-1 transition-all">
-            <div className="w-12 h-12 rounded-xl bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-primary mb-5">
+          {/* Card 2: Healing & Expression (Clickable -> Opens Healing & Expression Page) */}
+          <div
+            onClick={onOpenHealingExpression}
+            className="p-8 bg-white dark:bg-slate-800 rounded-2xl border-2 border-pink-200 dark:border-pink-900/60 shadow-sm hover:border-primary hover:shadow-xl hover:-translate-y-1.5 transition-all cursor-pointer group relative overflow-hidden"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onOpenHealingExpression?.();
+              }
+            }}
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform"></div>
+
+            <div className="w-12 h-12 rounded-xl bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-primary mb-5 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all">
               <Heart className="w-6 h-6 stroke-[2.2]" />
             </div>
-            <h3 className="font-bold text-xl mb-2 text-slate-800 dark:text-slate-100">
-              {t.platform.card2Title}
-            </h3>
-            <p className="text-sm text-slate-600 dark:text-slate-300 opacity-80 leading-relaxed">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-bold text-xl text-slate-800 dark:text-slate-100 group-hover:text-primary transition-colors">
+                {t.platform.card2Title}
+              </h3>
+              <ArrowRight className="w-5 h-5 text-primary opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-300 opacity-80 leading-relaxed mb-4">
               {t.platform.card2Desc}
             </p>
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary group-hover:underline">
+              {t.platform.card2Action}
+            </span>
           </div>
         </div>
       </div>

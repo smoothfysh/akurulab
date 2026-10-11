@@ -13,8 +13,9 @@ import { Footer } from './components/Footer';
 import { OrderModal } from './components/OrderModal';
 import { ExcerptModal } from './components/ExcerptModal';
 import { InfoModal, InfoModalType } from './components/InfoModal';
+import { HealingExpressionPage } from './pages/HealingExpressionPage';
 
-export type PageType = 'home' | 'creative-alchemy';
+export type PageType = 'home' | 'creative-alchemy' | 'healing-expression';
 
 function AppContent() {
   const [isDark, setIsDark] = useState<boolean>(() => {
@@ -28,6 +29,9 @@ function AppContent() {
   const [currentPage, setCurrentPage] = useState<PageType>(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.toLowerCase();
+      if (hash.includes('healing-expression') || hash.includes('healing')) {
+        return 'healing-expression';
+      }
       if (hash.includes('creative-alchemy') || hash.includes('where-to-buy') || hash.includes('hrvatski')) {
         return 'creative-alchemy';
       }
@@ -56,7 +60,9 @@ function AppContent() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
-      if (hash.includes('creative-alchemy') || hash.includes('where-to-buy') || hash.includes('hrvatski')) {
+      if (hash.includes('healing-expression') || hash.includes('healing')) {
+        setCurrentPage('healing-expression');
+      } else if (hash.includes('creative-alchemy') || hash.includes('where-to-buy') || hash.includes('hrvatski')) {
         setCurrentPage('creative-alchemy');
       } else if (!hash || hash === '#' || hash.includes('about-book') || hash.includes('about-author')) {
         setCurrentPage('home');
@@ -69,7 +75,9 @@ function AppContent() {
 
   const navigateTo = (page: PageType) => {
     setCurrentPage(page);
-    if (page === 'creative-alchemy') {
+    if (page === 'healing-expression') {
+      window.location.hash = '#/healing-expression';
+    } else if (page === 'creative-alchemy') {
       window.location.hash = '#/creative-alchemy';
     } else {
       window.location.hash = '';
@@ -91,26 +99,37 @@ function AppContent() {
         currentPage={currentPage}
         onNavigateHome={() => navigateTo('home')}
         onNavigateCreativeAlchemy={() => navigateTo('creative-alchemy')}
+        onNavigateHealingExpression={() => navigateTo('healing-expression')}
       />
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        {currentPage === 'home' ? (
+        {currentPage === 'home' && (
           <div>
-            {/* Section 1: About the Platform / AkuruLab (with clickable Creative Alchemy card) */}
+            {/* Section 1: About the Platform / AkuruLab (with clickable Creative Alchemy & Healing cards) */}
             <AboutPlatform
               onOpenCreativeAlchemy={() => navigateTo('creative-alchemy')}
+              onOpenHealingExpression={() => navigateTo('healing-expression')}
             />
 
             {/* Section 2: Meet the Author */}
             <AboutAuthor onContactClick={() => setInfoModal('contact')} />
           </div>
-        ) : (
+        )}
+
+        {currentPage === 'creative-alchemy' && (
           /* Separate Page for Creative Alchemy: Book Showcase, Amazon Stores & Croatian Edition */
           <CreativeAlchemyPage
             onBackHome={() => navigateTo('home')}
             onOpenExcerpt={() => setIsExcerptOpen(true)}
             onOpenCroatianOrder={() => setIsOrderOpen(true)}
+          />
+        )}
+
+        {currentPage === 'healing-expression' && (
+          /* Separate Page for Healing & Expression: Podcasts, Surgery Guide & Klub GEA Dedication */
+          <HealingExpressionPage
+            onBackHome={() => navigateTo('home')}
           />
         )}
       </main>

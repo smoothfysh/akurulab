@@ -117,8 +117,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
   const isHr = language === 'hr';
   const titleText = isHr ? 'Naruči knjigu' : 'Order the Book';
   const subtitleText = isHr
-    ? 'Ispunite obrazac u nastavku kako biste naručili knjigu. Poslat ću vam podatke za plaćanje putem e-maila čim primim vašu narudžbu.'
-    : 'Fill in the form below to order the book. I will send you payment details via email as soon as I receive your order.';
+    ? 'Ispunite obrazac u nastavku kako biste naručili knjigu. Poslat ću vam podatke za plaćanje putem e-maila. Slanje knjige započinje tek nakon zaprimljene uplate.'
+    : 'Fill in the form below to order the book. Payment details will be sent via email. Delivery will only commence after payment has been received.';
 
   return (
     <div
@@ -158,6 +158,10 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                 ? `Vaša narudžba je uspješno poslana autorici. Podatke za uplatu poslat ću vam na e-mail adresu `
                 : `Your order has been sent to the author. Payment details will be sent to your email `}
               <strong className="text-slate-900 dark:text-white font-semibold underline">{email}</strong>.
+              {' '}
+              {isHr
+                ? 'Slanje knjige na vašu adresu započinje nakon zaprimljene uplate.'
+                : 'Delivery will commence once payment has been received.'}
             </p>
 
             {/* Receipt card */}
@@ -276,15 +280,15 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                 <div className="border-t border-slate-200 dark:border-slate-800 mt-4 pt-4 flex justify-end">
                   <div className="w-56 space-y-1.5 text-sm">
                     <div className="flex justify-between text-slate-600 dark:text-slate-300">
-                      <span>Subtotal</span>
+                      <span>{isHr ? 'Iznos' : 'Subtotal'}</span>
                       <span className="font-semibold text-slate-900 dark:text-white">€{subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-slate-600 dark:text-slate-300">
-                      <span>Shipping</span>
+                      <span>{isHr ? 'Dostava' : 'Shipping'}</span>
                       <span className="font-semibold text-slate-900 dark:text-white">€{shippingFee.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between font-bold text-base text-slate-900 dark:text-white pt-1 border-t border-slate-200 dark:border-slate-700">
-                      <span>Total</span>
+                      <span>{isHr ? 'Ukupno' : 'Total'}</span>
                       <span>€{total.toFixed(2)}</span>
                     </div>
                   </div>
@@ -301,7 +305,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                   {/* Name row */}
                   <div>
                     <label className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
-                      Name
+                      {isHr ? 'Ime i prezime' : 'Name'}
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -313,7 +317,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                           className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                         />
                         <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
-                          First Name
+                          {isHr ? 'Ime' : 'First Name'}
                         </span>
                       </div>
                       <div>
@@ -325,7 +329,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                           className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                         />
                         <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
-                          Last Name
+                          {isHr ? 'Prezime' : 'Last Name'}
                         </span>
                       </div>
                     </div>
@@ -335,7 +339,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                     <div>
                       <label className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
-                        Email
+                        {isHr ? 'E-mail' : 'Email'}
                       </label>
                       <input
                         required
@@ -352,7 +356,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
 
                     <div>
                       <label className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
-                        Phone Number <span className="text-red-500">*</span>
+                        {isHr ? 'Broj telefona' : 'Phone Number'} <span className="text-red-500">*</span>
                       </label>
                       <div className="grid grid-cols-3 gap-2">
                         <div>
@@ -365,7 +369,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                             className="w-full px-2.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 text-center"
                           />
                           <span className="block text-[11px] text-slate-500 dark:text-slate-400 mt-1 text-center">
-                            Country Code
+                            {isHr ? 'Pozivni broj države' : 'Country Code'}
                           </span>
                         </div>
                         <div>
@@ -377,7 +381,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                             className="w-full px-2.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 text-center"
                           />
                           <span className="block text-[11px] text-slate-500 dark:text-slate-400 mt-1 text-center">
-                            Area Code
+                            {isHr ? 'Pozivni broj' : 'Area Code'}
                           </span>
                         </div>
                         <div>
@@ -390,7 +394,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                             className="w-full px-2.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500"
                           />
                           <span className="block text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                            Phone Number
+                            {isHr ? 'Broj' : 'Phone Number'}
                           </span>
                         </div>
                       </div>
@@ -402,13 +406,13 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
               {/* SECTION 3: Address */}
               <div className="border-t border-slate-200 dark:border-slate-800 pt-6">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">
-                  {isHr ? 'Adresa' : 'Address'}
+                  {isHr ? 'Adresa za dostavu' : 'Address'}
                 </h3>
 
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
-                      Shipping &amp; Billing Address
+                      {isHr ? 'Ulica i kućni broj' : 'Shipping & Billing Address'}
                     </label>
                     <input
                       required
@@ -418,7 +422,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                       className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     />
                     <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
-                      Street Address
+                      {isHr ? 'Ulica i broj' : 'Street Address'}
                     </span>
                   </div>
 
@@ -430,7 +434,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                       className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     />
                     <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
-                      Street Address Line 2
+                      {isHr ? 'Dodatni podaci adrese (npr. stan, kat)' : 'Street Address Line 2'}
                     </span>
                   </div>
 
@@ -444,7 +448,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                         className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                       />
                       <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
-                        City
+                        {isHr ? 'Grad' : 'City'}
                       </span>
                     </div>
 
@@ -456,7 +460,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                         className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                       />
                       <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
-                        State / Province
+                        {isHr ? 'Županija / Regija' : 'State / Province'}
                       </span>
                     </div>
                   </div>
@@ -470,7 +474,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                       className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     />
                     <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
-                      Postal / Zip Code
+                      {isHr ? 'Poštanski broj' : 'Postal / Zip Code'}
                     </span>
                   </div>
                 </div>
@@ -495,7 +499,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                       <span>{isHr ? 'Slanje...' : 'Submitting...'}</span>
                     </>
                   ) : (
-                    <span>Submit</span>
+                    <span>{isHr ? 'Naruči ovdje' : 'Order Here'}</span>
                   )}
                 </button>
               </div>

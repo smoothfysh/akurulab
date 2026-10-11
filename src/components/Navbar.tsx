@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Moon, Sun, Menu, X, BookHeart, Globe, Sparkles } from 'lucide-react';
+import { Moon, Sun, Menu, X, Globe, Sparkles, Heart } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface NavbarProps {
   isDark: boolean;
   toggleDarkMode: () => void;
   onOpenCroatianOrder: () => void;
-  currentPage: 'home' | 'creative-alchemy';
+  currentPage: 'home' | 'creative-alchemy' | 'healing-expression';
   onNavigateHome: () => void;
   onNavigateCreativeAlchemy: () => void;
+  onNavigateHealingExpression: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -18,6 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   currentPage,
   onNavigateHome,
   onNavigateCreativeAlchemy,
+  onNavigateHealingExpression,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -89,6 +91,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Sparkles className="w-3.5 h-3.5 text-primary" />
               <span>{t.nav.creativeAlchemy}</span>
             </button>
+            <button
+              onClick={() => {
+                onNavigateHealingExpression();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`inline-flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer px-3 py-1 rounded-full ${
+                currentPage === 'healing-expression'
+                  ? 'bg-pink-100/70 dark:bg-pink-900/40 text-primary font-bold'
+                  : ''
+              }`}
+            >
+              <Heart className="w-3.5 h-3.5 text-primary" />
+              <span>{t.nav.healingExpression}</span>
+            </button>
           </div>
 
           {/* Right actions: Language selector, Theme switcher, Mobile menu */}
@@ -150,20 +166,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile menu dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white/95 dark:bg-zinc-900/95 backdrop-blur-lg border-b border-pink-100 dark:border-slate-800 px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
-          <div
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onNavigateHome();
-            }}
-            className="flex items-center gap-3 px-3 py-2 border-b border-slate-100 dark:border-slate-800 pb-3 cursor-pointer"
-          >
-            <img
-              src="./Flask Pouring Into Open Book Logo.png"
-              alt="AkuruLab Logo"
-              className="h-10 w-auto object-contain dark:brightness-0 dark:invert"
-            />
-          </div>
-
           <button
             onClick={() => handleGoToSection('about-book', 'home')}
             className="w-full text-left block px-3 py-2 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-primary transition-colors cursor-pointer"
@@ -185,6 +187,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="w-full text-left block px-3 py-2 rounded-xl text-base font-medium text-primary bg-pink-50/60 dark:bg-pink-900/20 hover:bg-pink-100/60 transition-colors cursor-pointer"
           >
             ✨ {t.nav.creativeAlchemy}
+          </button>
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onNavigateHealingExpression();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="w-full text-left block px-3 py-2 rounded-xl text-base font-medium text-primary bg-pink-50/60 dark:bg-pink-900/20 hover:bg-pink-100/60 transition-colors cursor-pointer"
+          >
+            💖 {t.nav.healingExpression}
           </button>
 
 
@@ -224,18 +236,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <span>{isDark ? t.nav.lightMode : t.nav.darkMode}</span>
               {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
-            </button>
-
-
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenCroatianOrder();
-              }}
-              className="w-full text-center bg-primary hover:bg-[#d84868] text-white px-4 py-2.5 rounded-full font-semibold shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <BookHeart className="w-4 h-4" />
-              <span>{t.nav.orderCopy}</span>
             </button>
           </div>
         </div>

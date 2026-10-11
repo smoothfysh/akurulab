@@ -116,29 +116,27 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
                 <p>
                   <strong>Hrvatsko izdanje (&ldquo;To su samo sise&rdquo;):</strong>
                 </p>
-                <ul className="list-disc pl-5 space-y-1.5">
+                <ul className="list-disc pl-5 space-y-2">
                   <li><strong>Područje dostave:</strong> Cijela Republika Hrvatska.</li>
-                  <li><strong>Vrijeme dostave:</strong> 2 do 4 radna dana putem kurirske službe ili praćenog paketa.</li>
-                  <li><strong>Pakiranje:</strong> Posebno zaštićeno pakiranje kako bi knjiga stigla u besprijekornom stanju.</li>
-                  <li><strong>Plaćanje:</strong> Pouzećem pri preuzimanju ili uplatom na račun.</li>
+                  <li><strong>Plaćanje i slanje:</strong> Nakon što ispunite obrazac za narudžbu, primit ćete podatke za uplatu putem e-maila. Slanje paketa započinje TEK NAKON zaprimljene uplate.</li>
+                  <li><strong>Vrijeme dostave:</strong> Pošiljka se šalje putem pošte čim uplata bude evidentirana (vrijeme isporuke ovisi o poštanskoj službi).</li>
                 </ul>
                 <p className="pt-2">
-                  <strong>Englesko izdanje:</strong> Tiska se i isporučuje diljem svijeta putem platforme Amazon s brzim lokalnim opcijama dostave.
+                  <strong>Englesko izdanje:</strong> Tiska se i isporučuje diljem svijeta putem platforme Amazon s lokalnim opcijama dostave.
                 </p>
               </>
             ) : (
               <>
                 <p>
-                  <strong>English Edition:</strong> Printed and fulfilled globally via Amazon KDP with local store delivery times and options.
+                  <strong>English Edition:</strong> Printed and fulfilled globally via Amazon with local store delivery options.
                 </p>
                 <p>
                   <strong>Croatian Edition (&ldquo;To su samo sise&rdquo;):</strong>
                 </p>
-                <ul className="list-disc pl-5 space-y-1.5">
+                <ul className="list-disc pl-5 space-y-2">
                   <li><strong>Delivery Area:</strong> Anywhere in the Republic of Croatia.</li>
-                  <li><strong>Delivery Time:</strong> 2 to 4 business days via courier or tracked package.</li>
-                  <li><strong>Packaging:</strong> Sturdy protective padded packaging.</li>
-                  <li><strong>Payment:</strong> Cash on delivery or direct bank transfer.</li>
+                  <li><strong>Payment &amp; Dispatch:</strong> After filling out the order form, you will receive payment details via email. Delivery will only commence AFTER payment has been received.</li>
+                  <li><strong>Delivery Time:</strong> Orders are dispatched via post once payment is confirmed (transit time depends on the postal service).</li>
                 </ul>
               </>
             )
@@ -148,25 +146,31 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
             language === 'hr' ? (
               <>
                 <p>
-                  <strong>Opći uvjeti:</strong> Ovi uvjeti uređuju izravnu kupnju knjige &ldquo;To su samo sise&rdquo; putem ove web stranice.
+                  <strong>Opći uvjeti:</strong> Ovi uvjeti uređuju izravnu narudžbu i kupnju knjige &ldquo;To su samo sise&rdquo; putem ove web stranice.
                 </p>
                 <p>
-                  <strong>Cijene:</strong> Sve cijene su izražene u eurima (€). Maloprodajna cijena primjerka iznosi 20,00 €.
+                  <strong>Cijene i plaćanje:</strong> Sve cijene su izražene u eurima (€). Cijena primjerka iznosi 12,50 € (+ 3,00 € dostava unutar Hrvatske). Slanje knjige započinje isključivo nakon zaprimljene uplate.
                 </p>
                 <p>
-                  <strong>Zamjena i reklamacije:</strong> U slučaju oštećenja pošiljke u transportu, javite nam se unutar 14 dana i poslat ćemo vam novi primjerak bez dodatnih troškova.
+                  <strong>Politika konačne prodaje (Bez prava na povrat):</strong> Ova knjiga je neovisno, samostalno objavljeno djelo i osobni memoar koji dijeli intimnu životnu priču autorice. Iako autorica iskreno cijeni vašu podršku i interes za njezino djelo, sve kupnje su konačne. Iz tog razloga ne prihvaćamo povrate, otkaze narudžbi niti odobravamo povrat novca. Slanjem obrasca za narudžbu i izvršenjem uplate, kupac izričito i neopozivo potvrđuje i prihvaća ove uvjete kupnje.
+                </p>
+                <p>
+                  <strong>Oštećenja u transportu:</strong> U rijetkom slučaju da pošiljka stigne fizički oštećena tijekom dostave, kupac je dužan javiti se putem kontakt obrasca unutar 7 dana od preuzimanja s priloženim jasnim fotografijama oštećene pošiljke i ambalaže radi provjere i procjene slanja zamjenskog primjerka.
                 </p>
               </>
             ) : (
               <>
                 <p>
-                  <strong>General:</strong> These terms govern direct orders of the book &ldquo;To su samo sise&rdquo; placed through this website.
+                  <strong>General:</strong> These terms govern direct orders and purchases of the book &ldquo;To su samo sise&rdquo; placed through this website.
                 </p>
                 <p>
-                  <strong>Price &amp; Currency:</strong> All prices are displayed in Euros (€). The standard retail price is 20.00 € per copy.
+                  <strong>Price &amp; Payment:</strong> All prices are displayed in Euros (€). The book price is €12.50 (+ €3.00 shipping within Croatia). Delivery will commence only after full payment has been received.
                 </p>
                 <p>
-                  <strong>Returns:</strong> If your copy arrives damaged during transit, contact us within 14 days and a complimentary replacement will be dispatched promptly.
+                  <strong>All Sales Final &amp; No-Returns Policy:</strong> This book is an independent, self-published personal memoir sharing the author&apos;s authentic lived experience and artistic expression. While your support of this story is deeply valued, please note that all sales are strictly final. We do not accept returns, order cancellations, or issue refunds under any circumstances once payment has been received. By submitting an order and completing payment, the purchaser expressly and irrevocably acknowledges and agrees to these terms.
+                </p>
+                <p>
+                  <strong>Transit Damage:</strong> In the unlikely event that your package arrives demonstrably damaged in transit, please contact us within 7 days of delivery with clear photographs of the damaged package and book so a replacement copy may be evaluated.
                 </p>
               </>
             )
