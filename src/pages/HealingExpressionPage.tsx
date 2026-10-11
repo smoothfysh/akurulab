@@ -303,23 +303,36 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = ({ on
                 <span>{t.healingPage.charityBeneficialTitle}</span>
               </h3>
 
-              <div className="space-y-3.5 text-sm text-slate-700 dark:text-slate-300">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                  <span>{t.healingPage.charityBeneficial1}</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                  <span>{t.healingPage.charityBeneficial2}</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                  <span>{t.healingPage.charityBeneficial3}</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                  <span>{t.healingPage.charityBeneficial4}</span>
-                </div>
+              <div className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
+                {[
+                  t.healingPage.charityBeneficial1,
+                  t.healingPage.charityBeneficial2,
+                  t.healingPage.charityBeneficial3,
+                  t.healingPage.charityBeneficial4,
+                ].map((item, idx) => {
+                  const colonIndex = item.indexOf(':');
+                  if (colonIndex !== -1) {
+                    const title = item.slice(0, colonIndex + 1);
+                    const rest = item.slice(colonIndex + 1);
+                    return (
+                      <div key={idx} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                        <span className="leading-relaxed">
+                          <strong className="font-semibold text-slate-900 dark:text-white">
+                            {title}
+                          </strong>
+                          {rest}
+                        </span>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                      <span className="leading-relaxed">{item}</span>
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-700 text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
