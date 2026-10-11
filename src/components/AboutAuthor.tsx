@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IMAGES } from '../data/stores';
-import { Instagram, Youtube, Mail, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { Instagram, Mail, Sparkles, Image as ImageIcon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface AboutAuthorProps {
@@ -33,11 +33,11 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
           <div className="w-full relative md:w-1/3">
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-yellow-200/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div className="relative mx-auto max-w-sm rounded-2xl overflow-hidden shadow-2xl border-2 border-pink-100 dark:border-slate-700 transform hover:scale-[1.02] transition-transform duration-500 bg-slate-100 dark:bg-slate-800">
+            <div className="relative mx-auto max-w-sm rounded-2xl overflow-hidden shadow-2xl border-2 border-pink-100 dark:border-slate-700 transform hover:scale-[1.02] transition-transform duration-500 bg-slate-100 dark:bg-slate-800 aspect-[2/3]">
               <img
                 src={IMAGES.author}
                 alt="Milena - Author of It's Just Tits"
-                className="w-full h-auto object-cover block"
+                className="w-full h-full object-cover object-center block"
                 loading="lazy"
               />
             </div>
@@ -63,24 +63,14 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
             {/* Social & Contact Links */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/akurulab/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full border-2 border-pink-100 dark:border-slate-700 hover:border-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary bg-white dark:bg-slate-700 shadow-sm"
                 aria-label="Instagram profile"
-                title="Instagram"
+                title="Instagram @akurulab"
               >
                 <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full border-2 border-pink-100 dark:border-slate-700 hover:border-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary bg-white dark:bg-slate-700 shadow-sm"
-                aria-label="YouTube channel"
-                title="YouTube"
-              >
-                <Youtube className="w-5 h-5" />
               </a>
               <button
                 onClick={onContactClick}

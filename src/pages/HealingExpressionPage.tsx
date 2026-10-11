@@ -25,65 +25,53 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
   const isHr = language === 'hr';
 
   const [activeFaqFilter, setActiveFaqFilter] = useState<'all' | 'hospital' | 'medical' | 'appointment' | 'support'>('all');
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(0);
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
-  // Podcasts and expert interviews
-  const podcasts = [
+  // Podcasts and expert interviews (featured watercolor artwork cards)
+  const podcastCards = [
     {
       id: 1,
-      title: isHr
-        ? 'Razgovor s onkologom: Što očekivati nakon biopsije i dijagnoze'
-        : 'Conversations with an Oncologist: Navigating Biopsy & Initial Diagnosis',
-      guest: isHr ? 'Dr. med. specijalist onkologije' : 'Clinical Oncology Specialist',
-      category: isHr ? 'Medicinski savjeti' : 'Medical Insights',
-      duration: '42 min',
-      description: isHr
-        ? 'Detaljan pregled medicinskih nalaza, hormonskog statusa (ER/PR/HER2) i kako pristupiti planiranju liječenja bez panike.'
-        : 'Demystifying pathology reports, receptor status (ER/PR/HER2), staging, and building an individualized treatment timeline without panic.',
-      youtubeUrl: 'https://www.youtube.com/@KlubGeaPula',
-      badgeColor: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300',
+      image: './MEDICAL INSIGHTS.jpg',
+      pill: t.healingPage.podcast1Pill,
+      title: t.healingPage.podcast1Title,
+      accentDot: 'bg-[#34D399]',
+      pillBg: 'bg-[#D1F7E5] dark:bg-emerald-950/80',
+      pillText: 'text-[#046C4E] dark:text-emerald-200',
+      pillBorder: 'border-[#A7F3D0]/80 dark:border-emerald-800/80',
+      youtubeUrl: 'https://www.youtube.com/watch?v=o5UVKosD20M',
     },
     {
       id: 2,
-      title: isHr
-        ? 'Priče borkinja: Snaga humora i akvarela u najtežim danima'
-        : 'Warrior Journeys: Finding Humor, Watercolors & Dignity in Recovery',
-      guest: isHr ? 'Milena & članice udruge Klub GEA' : 'Milena & Breast Cancer Survivors',
-      category: isHr ? 'Priča preživjelih' : 'Survivor Story',
-      duration: '38 min',
-      description: isHr
-        ? 'Iskreni, nefiltrirani razgovor o tome kako prihvatiti novo tijelo, razbiti tabue i pronaći kreativni izraz usred terapija.'
-        : 'An authentic, unfiltered discussion on body neutrality, reclaiming identity, laughter as therapy, and expressing emotions through creative art.',
-      youtubeUrl: 'https://www.youtube.com/@KlubGeaPula',
-      badgeColor: 'bg-pink-100 text-pink-800 dark:bg-pink-950/60 dark:text-pink-300',
+      image: './SURVIVOR STORIES.jpg',
+      pill: t.healingPage.podcast2Pill,
+      title: t.healingPage.podcast2Title,
+      accentDot: 'bg-[#F472B6]',
+      pillBg: 'bg-[#FDE2EC] dark:bg-pink-950/80',
+      pillText: 'text-[#9D174D] dark:text-pink-200',
+      pillBorder: 'border-[#FBCFE8]/80 dark:border-pink-800/80',
+      youtubeUrl: 'https://www.youtube.com/watch?v=XbIkhB0I4fw',
     },
     {
       id: 3,
-      title: isHr
-        ? 'Kirurška priprema i limfna drenaža: Savjeti fizioterapeuta'
-        : 'Surgical Preparation & Lymphatic Care: Physiotherapy After Mastectomy',
-      guest: isHr ? 'Fizioterapeut i limfoterapeut' : 'Certified Lymphatic Specialist',
-      category: isHr ? 'Rehabilitacija' : 'Physical Therapy',
-      duration: '35 min',
-      description: isHr
-        ? 'Kako prevenirati limfedem, pravilne vježbe razgibavanja nakon operacije i važnost redovitih manualnih drenaža.'
-        : 'Practical guidance on lymphedema prevention, safe arm mobilization post-surgery, compression garments, and professional manual lymphatic drainage.',
-      youtubeUrl: 'https://www.youtube.com/@KlubGeaPula',
-      badgeColor: 'bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300',
+      image: './PSYCHOLOGISTS & PHYSIOTHERAPISTS.jpg',
+      pill: t.healingPage.podcast3Pill,
+      title: t.healingPage.podcast3Title,
+      accentDot: 'bg-[#38BDF8]',
+      pillBg: 'bg-[#E0F2FE] dark:bg-sky-950/80',
+      pillText: 'text-[#0369A1] dark:text-sky-200',
+      pillBorder: 'border-[#BAE6FD]/80 dark:border-sky-800/80',
+      youtubeUrl: 'https://www.youtube.com/watch?v=7I0K716_d9I',
     },
     {
       id: 4,
-      title: isHr
-        ? 'Mentalno zdravlje i podrška obitelji: Kako reći bližnjima'
-        : 'Psycho-Oncology: Managing Fear, Boundaries & Talking to Loved Ones',
-      guest: isHr ? 'Psiho-onkolog i savjetnik' : 'Psycho-Oncologist & Counselor',
-      category: isHr ? 'Emocionalna podrška' : 'Emotional Care',
-      duration: '45 min',
-      description: isHr
-        ? 'Alati za suočavanje s anksioznošću, postavljanje granica s okolinom i pronalazak unutrašnjeg mira tijekom oporavka.'
-        : 'Evidence-based strategies for scanxiety, setting boundaries with well-wishers, and nurturing mental resilience during active therapy.',
-      youtubeUrl: 'https://www.youtube.com/@KlubGeaPula',
-      badgeColor: 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300',
+      image: './HEALTH & NUTRITION_2.jpg',
+      pill: t.healingPage.podcast4Pill,
+      title: t.healingPage.podcast4Title,
+      accentDot: 'bg-[#FBBF24]',
+      pillBg: 'bg-[#FEF3C7] dark:bg-amber-950/80',
+      pillText: 'text-[#92400E] dark:text-amber-200',
+      pillBorder: 'border-[#FDE68A]/80 dark:border-amber-800/80',
+      youtubeUrl: 'https://www.youtube.com/watch?v=SPsZ-eAK2BM',
     },
   ];
 
@@ -99,15 +87,15 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
       icon: Package,
       answer: isHr ? (
         <div className="space-y-3">
-          <p>Evo provjerenog popisa stvari koje čine boravak i prve sate nakon operacije znatno ugodnijima:</p>
+          <p>Evo provjerenog popisa stvari osmišljenog kako bi vaš boravak u bolnici bio ugodan i siguran:</p>
           <ul className="list-disc pl-5 space-y-1.5 text-slate-700 dark:text-slate-300">
-            <li><strong>Pidžame ili košulje koje se kopčaju s prednje strane:</strong> Izbjegavajte majice koje se navlače preko glave jer podizanje ruku nakon operacije nije preporučljivo niti ugodno.</li>
-            <li><strong>Mekani jastučić u obliku srca (srcoliki jastuk):</strong> Posebno dizajniran za postavljanje ispod pazuha koji ublažava pritisak kirurških rezova i štiti ruku.</li>
-            <li><strong>Mala torbica ili vezica za drenove:</strong> Pomaže držati drenažne bočice uz tijelo dok hodate ili odlazite u kupaonicu.</li>
-            <li><strong>Udobne natikače (slip-on) s gumenim potplatom:</strong> Obuća bez vezanja kako se ne biste morali saginjati.</li>
-            <li><strong>Ekstra dugačak kabel za punjač mobitela:</strong> Utičnice u bolničkim sobama često su udaljene od kreveta.</li>
-            <li><strong>Balzam za usne i hidratantna krema:</strong> Zrak u bolničkim sobama izuzetno isušuje kožu.</li>
-            <li><strong>Vlažne maramice i suhi šampon:</strong> Tuširanje cijelog tijela s drenovima može biti ograničeno prvih nekoliko dana.</li>
+            <li><strong>Pidžame ili gornji dijelovi koji se kopčaju s prednje strane:</strong> Izbjegavajte sve što se navlači preko glave. Pokretljivost ruku i prsnog koša nakon operacije bit će ograničena.</li>
+            <li><strong>Mekani jastučić u obliku srca (opcionalno / dobrodošlo):</strong> Nježno sjeda ispod pazuha kako bi ublažio pritisak na kirurške rezove, područje limfnih čvorova i osjetljivo prsno tkivo. Iako je opcionalan, <em>običan jastuk iznimno je koristan za put kući</em> kako bi zaštitio prsa od pritiska sigurnosnog pojasa u automobilu.</li>
+            <li><strong>Mogućnosti za nošenje drenova:</strong> Kako bi drenažne bočice bile sigurno učvršćene dok se krećete ili odlazite u toalet, možete koristiti specijaliziranu trakicu ili malu torbicu za drenove. No, <em>udoban kućni ogrtač s dubokim džepovima ili mala pamučna vrećica</em> obješena oko vrata funkcioniraju izvrsno kao alternativa.</li>
+            <li><strong>Natikače (obuća bez vezanja):</strong> Udobne papuče s protukliznim potplatom koje ne zahtijevaju saginjanje niti vezanje vezica.</li>
+            <li><strong>Ekstra dugačak kabel za punjač mobitela (cca 180 do 300 cm):</strong> Utičnice u bolničkim sobama često su smještene daleko od kreveta.</li>
+            <li><strong>Balzam za usne i hidratantna krema bez mirisa:</strong> Zrak u bolničkim sobama može biti suh.</li>
+            <li><strong>Vlažne maramice za tijelo i suhi šampon:</strong> Tuširanje može biti ograničeno sve dok se ne uklone kirurški drenovi i zavoji.</li>
           </ul>
         </div>
       ) : (
@@ -115,11 +103,11 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
           <p>Here is a field-tested packing checklist curated to make your hospital stay comfortable and safe:</p>
           <ul className="list-disc pl-5 space-y-1.5 text-slate-700 dark:text-slate-300">
             <li><strong>Front-buttoning tops and pajamas:</strong> Avoid anything that pulls over your head. Post-surgery mobility in your arms and chest will be limited.</li>
-            <li><strong>Heart-shaped comfort pillow:</strong> Fits gently under your armpit to relieve pressure on incisions, lymph node sites, and tender chest tissue.</li>
-            <li><strong>Drain carrier lanyard or small pouch:</strong> Keeps surgical drain bulbs securely fastened to your body when moving around or using the restroom.</li>
-            <li><strong>Slip-on footwear:</strong> Supportive non-slip slippers that don’t require bending over or tying laces.</li>
-            <li><strong>Extra-long phone charger cable (6-10 ft):</strong> Hospital power outlets are frequently located far from the bed.</li>
-            <li><strong>Unscented lip balm &amp; moisturizer:</strong> Hospital room air is notoriously dry.</li>
+            <li><strong>Heart-shaped comfort pillow (Optional / Nice-to-have):</strong> Fits gently under your armpit to relieve pressure on incisions, lymph node sites, and tender chest tissue. While optional, <em>a regular pillow is very useful for the journey home</em> to cushion your chest against the seatbelt.</li>
+            <li><strong>Drain management options:</strong> To keep surgical drain bulbs securely fastened when moving around or using the restroom, you can use a specialized drain carrier lanyard or small pouch. However, <em>a comfortable robe with deep pockets or a small cotton bag</em> hung around your neck works wonderfully as an alternative.</li>
+            <li><strong>Slip-on footwear:</strong> Supportive non-slip slippers that don't require bending over or tying laces.</li>
+            <li><strong>Extra-long phone charger cable (approx. 180 to 300 cm):</strong> Hospital power outlets are frequently located far from the bed.</li>
+            <li><strong>Unscented lip balm &amp; moisturizer:</strong> Hospital room air can be dry.</li>
             <li><strong>Body wipes &amp; dry shampoo:</strong> Showering may be restricted until surgical drains and dressings are removed.</li>
           </ul>
         </div>
@@ -165,19 +153,19 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
       icon: Stethoscope,
       answer: isHr ? (
         <div className="space-y-3">
-          <p>Drenovi odvode limfnu tekućinu kako bi tkivo pravilno zacijelilo:</p>
+          <p>Drenovi sprječavaju nakupljanje seroma i omogućuju pravilno zacjeljivanje tkiva:</p>
           <ul className="list-disc pl-5 space-y-1.5 text-slate-700 dark:text-slate-300">
-            <li><strong>Bilježite količinu:</strong> Svaki dan u isto vrijeme ispraznite dren u mjernu posudicu i zapišite mililitre u tablicu.</li>
-            <li><strong>Čuvajte ruku na operiranoj strani:</strong> Izbjegavajte vađenje krvi, mjerenje tlaka ili nošenje teških tereta (iznad 2 kg) tom rukom ako su uklonjeni limfni čvorovi.</li>
-            <li><strong>Započnite s blagom drenažom:</strong> Klub GEA nudi besplatne manualne limfne drenaže s licenciranim fizioterapeutima koji vas uče pravilnom disanju i vježbama.</li>
+            <li><strong>Praćenje količine i medicinska skrb:</strong> Moći ćete pratiti drenažnu tekućinu, no medicinsko osoblje bit će zaduženo za pražnjenje i vođenje drenova. Iz bolnice se obično otpuštate kada se 24-satna količina tekućine spusti ispod 30 ml.</li>
+            <li><strong>Zaštitite operiranu ruku:</strong> Ubuduće izbjegavajte vađenje krvi, intravenozne kanile, mjerenje krvnog tlaka manžetom ili podizanje teških tereta na strani na kojoj su rađeni biopsija ili vađenje limfnih čvorova. (Napomena: ako imate obostranu mastektomiju, ova se mjera opreza na jednoj određenoj strani neće primjenjivati.)</li>
+            <li><strong>Potražite stručnu manualnu limfnu drenažu:</strong> Specijalizirane ustanove i klubovi podrške poput Kluba GEA nude stručnu dekongestivnu terapiju i vježbe mobilnosti.</li>
           </ul>
         </div>
       ) : (
         <div className="space-y-3">
           <p>Drains prevent seroma accumulation and support clean tissue adhesion:</p>
           <ul className="list-disc pl-5 space-y-1.5 text-slate-700 dark:text-slate-300">
-            <li><strong>Empty and log outputs regularly:</strong> Measure drain fluids at identical times each day to track when the volume safely falls below removal criteria (usually &lt;30ml/24h).</li>
-            <li><strong>Protect the affected arm:</strong> No blood draws, IV lines, blood pressure cuffs, or heavy lifting on the side where lymph nodes were biopsied or dissected.</li>
+            <li><strong>Monitor outputs and medical management:</strong> You will be able to keep an eye on your drain fluids, but the medical team will be emptying and managing them. You will typically be released from the hospital when your 24-hour collection falls below 30ml.</li>
+            <li><strong>Protect the affected arm:</strong> Moving forward, avoid blood draws, IV lines, blood pressure cuffs, or heavy lifting on the side where lymph nodes were biopsied or dissected. (Note: If you are having a double mastectomy, this precaution on one specific side will not apply.)</li>
             <li><strong>Seek professional manual lymphatic drainage:</strong> Dedicated clinics and survivor clubs like Klub GEA provide specialized decongestive therapy and mobilization routines.</li>
           </ul>
         </div>
@@ -217,6 +205,16 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
     if (activeFaqFilter === 'all') return true;
     return faq.category === activeFaqFilter;
   });
+
+  const handleFaqFilterChange = (tabId: 'all' | 'hospital' | 'medical' | 'appointment' | 'support') => {
+    setActiveFaqFilter(tabId);
+    if (tabId === 'all') {
+      setExpandedFaq(null);
+    } else {
+      const targetFaq = tipsFaq.find((item) => item.category === tabId);
+      setExpandedFaq(targetFaq ? targetFaq.id : null);
+    }
+  };
 
   return (
     <div className="pt-20 md:pt-24 pb-20 animate-in fade-in duration-300">
@@ -340,7 +338,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
       </section>
 
       {/* Section 2: Podcasts & Conversations (YouTube) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-24">
+      <section className="w-full max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-24">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pink-50 dark:bg-pink-900/30 text-primary text-xs font-bold uppercase tracking-wider mb-3 border border-pink-200 dark:border-pink-800">
             <Youtube className="w-4 h-4" />
@@ -359,57 +357,71 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
           </p>
         </div>
 
-        {/* Podcast Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {podcasts.map((pod) => (
-            <div
-              key={pod.id}
-              className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-primary/50 transition-all p-6 sm:p-7 flex flex-col justify-between group"
+        {/* Watercolor Podcast Cards Single Row Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 w-full mx-auto">
+          {podcastCards.map((card) => (
+            <a
+              key={card.id}
+              href={card.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${card.title} - ${t.healingPage.watchOnYoutube}`}
+              className="group relative block rounded-2xl sm:rounded-3xl overflow-hidden bg-[#FBF9F5] dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 focus:outline-none focus:ring-2 focus:ring-primary/50"
             >
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className={`text-xs font-semibold px-3 py-1 rounded-full ${pod.badgeColor}`}>
-                    {pod.category}
+              {/* Full Image Canvas with Overlays */}
+              <div className="relative w-full aspect-[1696/2528] overflow-hidden bg-[#FBF9F5] dark:bg-slate-900">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+
+                {/* Subtle hover vignette */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 pointer-events-none" />
+
+                {/* Top-Left: Colored PILL + Title text below with matching dot */}
+                <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-10 pointer-events-none space-y-1.5 sm:space-y-2">
+                  {/* Pill badge based on filename */}
+                  <span
+                    className={`inline-block px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full ${card.pillBg} ${card.pillText} border ${card.pillBorder} text-xs sm:text-xs lg:text-sm font-bold shadow-sm`}
+                  >
+                    {card.pill}
                   </span>
-                  <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                    {pod.duration}
-                  </span>
+
+                  {/* Title text with matching accent dot */}
+                  <div className="flex items-start gap-1.5 sm:gap-2 max-w-[95%]">
+                    <span
+                      className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full ${card.accentDot} flex-shrink-0 mt-1 shadow-sm`}
+                    />
+                    <span className="text-xs sm:text-xs lg:text-[13px] font-semibold text-slate-800 leading-snug drop-shadow-sm">
+                      {card.title}
+                    </span>
+                  </div>
                 </div>
 
-                <h3 className="font-bold text-xl text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
-                  {pod.title}
-                </h3>
+                {/* Bottom Overlay: Watch on YouTube + Icon */}
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-3.5 sm:left-3.5 sm:right-3.5 lg:bottom-4 lg:left-4 lg:right-4 z-10 flex items-center justify-between gap-2 pointer-events-none">
+                  <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md text-red-600 dark:text-red-400 font-bold text-xs sm:text-xs lg:text-sm shadow-md border border-slate-200/80 dark:border-slate-700/80 group-hover:bg-red-600 group-hover:text-white group-hover:border-red-600 transition-all duration-300">
+                    <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-red-100 dark:bg-red-950/60 flex items-center justify-center group-hover:bg-white text-red-600 transition-colors flex-shrink-0">
+                      <Play className="w-2 h-2 sm:w-2.5 sm:h-2.5 fill-current ml-0.5" />
+                    </div>
+                    <span className="truncate">{t.healingPage.watchOnYoutube}</span>
+                  </div>
 
-                <p className="text-xs font-medium text-primary mb-3">
-                  {pod.guest}
-                </p>
-
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                  {pod.description}
-                </p>
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 rounded-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:text-primary group-hover:scale-110 shadow-md border border-slate-200/80 dark:border-slate-700/80 transition-all duration-300 flex-shrink-0">
+                    <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                  </div>
+                </div>
               </div>
-
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                <a
-                  href={pod.youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-red-600 dark:text-red-400 hover:text-red-700 group-hover:underline"
-                >
-                  <Play className="w-4 h-4 fill-current" />
-                  <span>{t.healingPage.watchOnYoutube}</span>
-                </a>
-
-                <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" />
-              </div>
-            </div>
+            </a>
           ))}
         </div>
 
         {/* YouTube Channel Banner */}
         <div className="mt-8 text-center">
           <a
-            href="https://www.youtube.com/@KlubGeaPula"
+            href="https://www.youtube.com/@GeaKafePodcast"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
@@ -450,7 +462,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveFaqFilter(tab.id as any)}
+              onClick={() => handleFaqFilterChange(tab.id as any)}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 activeFaqFilter === tab.id
                   ? 'bg-primary text-white shadow-sm'

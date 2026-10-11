@@ -73,7 +73,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
 
     try {
       // Send to author's email via FormSubmit ajax endpoint
-      const response = await fetch('https://formsubmit.co/ajax/anushkaj@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/milenajayawardana@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
               </button>
 
               <a
-                href={`mailto:anushkaj@gmail.com?subject=Narudžba knjige: To su samo sise - ${encodeURIComponent(firstName + ' ' + lastName)}&body=Ime: ${encodeURIComponent(firstName + ' ' + lastName)}%0D%0AEmail: ${encodeURIComponent(email)}%0D%0ATelefon: ${encodeURIComponent(countryCode + ' ' + areaCode + ' ' + phoneNumber)}%0D%0AAdresa: ${encodeURIComponent(streetAddress + ', ' + city + ', ' + postalCode)}%0D%0AKoličina: ${quantity}%0D%0AUkupno: €${total.toFixed(2)}`}
+                href={`mailto:milenajayawardana@gmail.com?subject=Narudžba knjige: To su samo sise - ${encodeURIComponent(firstName + ' ' + lastName)}&body=Ime: ${encodeURIComponent(firstName + ' ' + lastName)}%0D%0AEmail: ${encodeURIComponent(email)}%0D%0ATelefon: ${encodeURIComponent(countryCode + ' ' + areaCode + ' ' + phoneNumber)}%0D%0AAdresa: ${encodeURIComponent(streetAddress + ', ' + city + ', ' + postalCode)}%0D%0AKoličina: ${quantity}%0D%0AUkupno: €${total.toFixed(2)}`}
                 className="w-full inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium py-3.5 px-6 rounded-xl transition-all"
               >
                 <Send className="w-4 h-4" />

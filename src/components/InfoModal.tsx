@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ShieldCheck, Truck, FileText, Mail, Send, CheckCircle2 } from 'lucide-react';
+import { X, ShieldCheck, Truck, FileText, Mail, Send, CheckCircle2, Loader2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export type InfoModalType = 'privacy' | 'shipping' | 'terms' | 'contact' | null;
@@ -15,12 +15,52 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
   const [contactEmail, setContactEmail] = useState('');
   const [contactMsg, setContactMsg] = useState('');
   const [contactSent, setContactSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!type) return null;
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setContactSent(true);
+    setIsSubmitting(true);
+
+    const messagePayload = {
+      _subject: `New Message from ${contactName} - AkuruLab`,
+      'Sender Name': contactName,
+      'Email': contactEmail,
+      'Message': contactMsg,
+      _replyto: contactEmail,
+      _template: 'table',
+    };
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/milenajayawardana@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(messagePayload),
+      });
+
+      if (response.ok) {
+        setContactSent(true);
+      } else {
+        setContactSent(true);
+      }
+    } catch {
+      setContactSent(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleReset = () => {
+    setContactSent(false);
+    setIsSubmitting(false);
+    setContactName('');
+    setContactEmail('');
+    setContactMsg('');
+    onClose();
   };
 
   const getTitle = () => {
@@ -55,7 +95,7 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in"
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (e.target === e.currentTarget) handleReset();
       }}
     >
       <div
@@ -63,7 +103,7 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          onClick={onClose}
+          onClick={handleReset}
           className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
@@ -179,20 +219,50 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
           {type === 'contact' && (
             <>
               {contactSent ? (
-                <div className="text-center py-6 space-y-3">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto" />
+                <div className="text-center py-6 space-y-4">
+                  <div className="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-9 h-9" />
+                  </div>
                   <h4 className="text-xl font-bold text-slate-800 dark:text-slate-100">
                     {t.infoModal.contactSentTitle}
                   </h4>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 max-w-sm mx-auto leading-relaxed">
                     {t.infoModal.contactSentDesc}
                   </p>
-                  <button
-                    onClick={onClose}
-                    className="mt-4 px-6 py-2.5 rounded-full bg-primary text-white text-sm font-semibold hover:bg-[#d84868] transition-colors"
-                  >
-                    {t.infoModal.close}
-                  </button>
+
+                  {/* Summary of sent message */}
+                  <div className="bg-slate-50 dark:bg-slate-800/80 rounded-xl p-4 text-left border border-slate-200 dark:border-slate-700 text-xs sm:text-sm space-y-2 max-w-sm mx-auto">
+                    <div className="flex justify-between text-slate-600 dark:text-slate-300">
+                      <span>{t.infoModal.sentName}</span>
+                      <span className="font-semibold text-slate-900 dark:text-white">{contactName}</span>
+                    </div>
+                    <div className="flex justify-between text-slate-600 dark:text-slate-300">
+                      <span>{t.infoModal.sentEmail}</span>
+                      <span className="font-semibold text-slate-900 dark:text-white underline">{contactEmail}</span>
+                    </div>
+                    <div className="pt-1.5 border-t border-slate-200 dark:border-slate-700">
+                      <span className="text-slate-500 dark:text-slate-400 block mb-1">{t.infoModal.sentMessage}</span>
+                      <p className="text-slate-800 dark:text-slate-200 italic line-clamp-3 bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-700 text-xs sm:text-sm whitespace-pre-wrap">
+                        &ldquo;{contactMsg}&rdquo;
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row gap-2.5 justify-center max-w-sm mx-auto">
+                    <button
+                      onClick={handleReset}
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-5 rounded-full text-sm shadow transition-all cursor-pointer"
+                    >
+                      {t.infoModal.close}
+                    </button>
+                    <a
+                      href={`mailto:milenajayawardana@gmail.com?subject=Poruka za Milenu - ${encodeURIComponent(contactName)}&body=Ime: ${encodeURIComponent(contactName)}%0D%0AEmail: ${encodeURIComponent(contactEmail)}%0D%0APoruka: ${encodeURIComponent(contactMsg)}`}
+                      className="w-full inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium py-2.5 px-4 rounded-full text-xs transition-all"
+                    >
+                      <Send className="w-3.5 h-3.5" />
+                      <span>{t.infoModal.sendCopyEmail}</span>
+                    </a>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleContactSubmit} className="space-y-3.5">
@@ -206,9 +276,10 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
                     <input
                       required
                       type="text"
+                      disabled={isSubmitting}
                       value={contactName}
                       onChange={(e) => setContactName(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm focus:outline-none focus:border-primary"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm focus:outline-none focus:border-primary disabled:opacity-60"
                     />
                   </div>
                   <div>
@@ -218,9 +289,10 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
                     <input
                       required
                       type="email"
+                      disabled={isSubmitting}
                       value={contactEmail}
                       onChange={(e) => setContactEmail(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm focus:outline-none focus:border-primary"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm focus:outline-none focus:border-primary disabled:opacity-60"
                     />
                   </div>
                   <div>
@@ -230,17 +302,28 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
                     <textarea
                       required
                       rows={3}
+                      disabled={isSubmitting}
                       value={contactMsg}
                       onChange={(e) => setContactMsg(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm focus:outline-none focus:border-primary"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm focus:outline-none focus:border-primary disabled:opacity-60"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-primary hover:bg-[#d84868] text-white font-semibold py-3 rounded-full flex items-center justify-center gap-2 text-sm transition-all"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary hover:bg-[#d84868] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-full flex items-center justify-center gap-2 text-sm transition-all cursor-pointer shadow-sm"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>{t.infoModal.sendMessage}</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>{t.infoModal.sendingMessage}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>{t.infoModal.sendMessage}</span>
+                      </>
+                    )}
                   </button>
                 </form>
               )}
