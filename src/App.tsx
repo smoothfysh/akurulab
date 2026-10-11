@@ -8,13 +8,13 @@ import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { AboutPlatform } from './components/AboutPlatform';
 import { AboutAuthor } from './components/AboutAuthor';
-import { BookHero } from './components/BookHero';
-import { WhereToBuy } from './components/WhereToBuy';
-import { CroatianEdition } from './components/CroatianEdition';
+import { CreativeAlchemyPage } from './pages/CreativeAlchemyPage';
 import { Footer } from './components/Footer';
 import { OrderModal } from './components/OrderModal';
 import { ExcerptModal } from './components/ExcerptModal';
 import { InfoModal, InfoModalType } from './components/InfoModal';
+
+export type PageType = 'home' | 'creative-alchemy';
 
 function AppContent() {
   const [isDark, setIsDark] = useState<boolean>(() => {
@@ -23,6 +23,16 @@ function AppContent() {
       if (saved) return saved === 'dark';
     }
     return false; // Default to light mode
+  });
+
+  const [currentPage, setCurrentPage] = useState<PageType>(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('creative-alchemy') || hash.includes('where-to-buy') || hash.includes('hrvatski')) {
+        return 'creative-alchemy';
+      }
+    }
+    return 'home';
   });
 
   const [isOrderOpen, setIsOrderOpen] = useState(false);
@@ -42,6 +52,31 @@ function AppContent() {
     }
   }, [isDark]);
 
+  // Listen to hash changes (browser back/forward support)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('creative-alchemy') || hash.includes('where-to-buy') || hash.includes('hrvatski')) {
+        setCurrentPage('creative-alchemy');
+      } else if (!hash || hash === '#' || hash.includes('about-book') || hash.includes('about-author')) {
+        setCurrentPage('home');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateTo = (page: PageType) => {
+    setCurrentPage(page);
+    if (page === 'creative-alchemy') {
+      window.location.hash = '#/creative-alchemy';
+    } else {
+      window.location.hash = '';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const toggleDarkMode = () => {
     setIsDark((prev) => !prev);
   };
@@ -53,27 +88,31 @@ function AppContent() {
         isDark={isDark}
         toggleDarkMode={toggleDarkMode}
         onOpenCroatianOrder={() => setIsOrderOpen(true)}
+        currentPage={currentPage}
+        onNavigateHome={() => navigateTo('home')}
+        onNavigateCreativeAlchemy={() => navigateTo('creative-alchemy')}
       />
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        {/* Section 1: About the Platform / AkuruLab */}
-        <AboutPlatform />
+        {currentPage === 'home' ? (
+          <div>
+            {/* Section 1: About the Platform / AkuruLab (with clickable Creative Alchemy card) */}
+            <AboutPlatform
+              onOpenCreativeAlchemy={() => navigateTo('creative-alchemy')}
+            />
 
-        {/* Section 2: Meet the Author */}
-        <AboutAuthor onContactClick={() => setInfoModal('contact')} />
-
-        {/* Section 3: Book Showcase Hero ("It's just tits" / "To su samo sise") */}
-        <BookHero
-          onOpenExcerpt={() => setIsExcerptOpen(true)}
-          onOpenCroatianOrder={() => setIsOrderOpen(true)}
-        />
-
-        {/* Section 4: Global Availability - Amazon Stores */}
-        <WhereToBuy />
-
-        {/* Section 5: Croatian Edition ("To su samo sise") */}
-        <CroatianEdition onOpenOrderModal={() => setIsOrderOpen(true)} />
+            {/* Section 2: Meet the Author */}
+            <AboutAuthor onContactClick={() => setInfoModal('contact')} />
+          </div>
+        ) : (
+          /* Separate Page for Creative Alchemy: Book Showcase, Amazon Stores & Croatian Edition */
+          <CreativeAlchemyPage
+            onBackHome={() => navigateTo('home')}
+            onOpenExcerpt={() => setIsExcerptOpen(true)}
+            onOpenCroatianOrder={() => setIsOrderOpen(true)}
+          />
+        )}
       </main>
 
       {/* Footer */}

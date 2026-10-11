@@ -95,43 +95,23 @@ export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt, onOpenCroatia
           </p>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            {language === 'hr' ? (
-              <>
-                <button
-                  onClick={onOpenCroatianOrder}
-                  className="bg-primary hover:bg-[#d84868] text-white px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
-                >
-                  <ShoppingBag className="w-5 h-5" />
-                  <span>{t.croatianSection.orderBtn}</span>
-                </button>
+            {/* CTA 1: BUY ENGLISH VERSION FROM AMAZON */}
+            <a
+              href="#where-to-buy"
+              className="bg-primary hover:bg-[#d84868] text-white px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              <span>{t.hero.buyKindle}</span>
+            </a>
 
-                <a
-                  href="#where-to-buy"
-                  className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white border-2 border-pink-100 dark:border-slate-700 hover:border-primary px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
-                >
-                  <ShoppingCart className="w-5 h-5 text-primary" />
-                  <span>Amazon (Englesko izdanje)</span>
-                </a>
-              </>
-            ) : (
-              <>
-                <a
-                  href="#where-to-buy"
-                  className="bg-primary hover:bg-[#d84868] text-white px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
-                >
-                  <ShoppingCart className="w-5 h-5" />
-                  <span>{t.hero.buyKindle}</span>
-                </a>
-
-                <a
-                  href="#where-to-buy"
-                  className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white border-2 border-pink-100 dark:border-slate-700 hover:border-primary px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
-                >
-                  <BookOpen className="w-5 h-5 text-primary" />
-                  <span>{t.hero.orderPaperback}</span>
-                </a>
-              </>
-            )}
+            {/* CTA 2: KNJIGA NA HRVATSKOM */}
+            <a
+              href="#hrvatski"
+              className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white border-2 border-pink-100 dark:border-slate-700 hover:border-primary px-7 py-3.5 sm:px-8 sm:py-4 rounded-full shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2.5 font-semibold text-sm sm:text-base cursor-pointer"
+            >
+              <BookOpen className="w-5 h-5 text-primary" />
+              <span>{t.hero.orderPaperback}</span>
+            </a>
 
             <button
               onClick={onOpenExcerpt}

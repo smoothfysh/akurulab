@@ -1,21 +1,41 @@
 import React, { useState } from 'react';
-import { Moon, Sun, Menu, X, BookHeart, Globe } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookHeart, Globe, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { IMAGES } from '../data/stores';
 
 interface NavbarProps {
   isDark: boolean;
   toggleDarkMode: () => void;
   onOpenCroatianOrder: () => void;
+  currentPage: 'home' | 'creative-alchemy';
+  onNavigateHome: () => void;
+  onNavigateCreativeAlchemy: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   isDark,
   toggleDarkMode,
   onOpenCroatianOrder,
+  currentPage,
+  onNavigateHome,
+  onNavigateCreativeAlchemy,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+
+  const handleGoToSection = (sectionId: string, page: 'home' | 'creative-alchemy') => {
+    setMobileMenuOpen(false);
+    if (page === 'home') {
+      onNavigateHome();
+    } else {
+      onNavigateCreativeAlchemy();
+    }
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 60);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-black/80 backdrop-blur-md border-b border-[#DEE5D4] dark:border-slate-800 transition-colors duration-300">
@@ -24,7 +44,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Brand - Flask Pouring Into Open Book Logo */}
           <a
             href="#"
-            className="flex-shrink-0 flex items-center group focus:outline-none py-1"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigateHome();
+            }}
+            className="flex-shrink-0 flex items-center group focus:outline-none py-1 cursor-pointer"
             aria-label="AkuruLab"
             title="AkuruLab"
           >
@@ -36,31 +60,35 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-7 items-center text-slate-700 dark:text-slate-200 font-medium text-sm lg:text-base">
-            <a
-              href="#about-book"
-              className="hover:text-primary transition-colors cursor-pointer"
+          <div className="hidden md:flex space-x-6 lg:space-x-8 items-center text-slate-700 dark:text-slate-200 font-medium text-sm lg:text-base">
+            <button
+              onClick={() => handleGoToSection('about-book', 'home')}
+              className={`hover:text-primary transition-colors cursor-pointer ${
+                currentPage === 'home' ? 'font-semibold text-slate-900 dark:text-white' : ''
+              }`}
             >
-              {t.nav.aboutPlatform}
-            </a>
-            <a
-              href="#about-author"
+              {t.nav.home}
+            </button>
+            <button
+              onClick={() => handleGoToSection('about-author', 'home')}
               className="hover:text-primary transition-colors cursor-pointer"
             >
               {t.nav.theAuthor}
-            </a>
-            <a
-              href="#where-to-buy"
-              className="hover:text-primary transition-colors cursor-pointer"
+            </button>
+            <button
+              onClick={() => {
+                onNavigateCreativeAlchemy();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`inline-flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer px-3 py-1 rounded-full ${
+                currentPage === 'creative-alchemy'
+                  ? 'bg-pink-100/70 dark:bg-pink-900/40 text-primary font-bold'
+                  : ''
+              }`}
             >
-              {t.nav.whereToBuy}
-            </a>
-            <a
-              href="#hrvatski"
-              className="bg-pink-50 dark:bg-pink-900/30 text-primary border border-pink-200 dark:border-pink-800/50 hover:bg-primary hover:text-white px-4 py-2 rounded-full font-medium transition-all shadow-xs hover:shadow"
-            >
-              {t.nav.croatianEdition}
-            </a>
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
+              <span>{t.nav.creativeAlchemy}</span>
+            </button>
           </div>
 
           {/* Right actions: Language selector, Theme switcher, Mobile menu */}
@@ -122,34 +150,43 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile menu dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white/95 dark:bg-zinc-900/95 backdrop-blur-lg border-b border-pink-100 dark:border-slate-800 px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="flex items-center gap-3 px-3 py-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+          <div
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onNavigateHome();
+            }}
+            className="flex items-center gap-3 px-3 py-2 border-b border-slate-100 dark:border-slate-800 pb-3 cursor-pointer"
+          >
             <img
               src="./Flask Pouring Into Open Book Logo.png"
               alt="AkuruLab Logo"
               className="h-10 w-auto object-contain dark:brightness-0 dark:invert"
             />
           </div>
-          <a
-            href="#about-book"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-primary transition-colors"
+
+          <button
+            onClick={() => handleGoToSection('about-book', 'home')}
+            className="w-full text-left block px-3 py-2 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-primary transition-colors cursor-pointer"
           >
-            {t.nav.aboutPlatform}
-          </a>
-          <a
-            href="#about-author"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-primary transition-colors"
+            {t.nav.home}
+          </button>
+          <button
+            onClick={() => handleGoToSection('about-author', 'home')}
+            className="w-full text-left block px-3 py-2 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-primary transition-colors cursor-pointer"
           >
             {t.nav.theAuthor}
-          </a>
-          <a
-            href="#where-to-buy"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-primary transition-colors"
+          </button>
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onNavigateCreativeAlchemy();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="w-full text-left block px-3 py-2 rounded-xl text-base font-medium text-primary bg-pink-50/60 dark:bg-pink-900/20 hover:bg-pink-100/60 transition-colors cursor-pointer"
           >
-            {t.nav.whereToBuy}
-          </a>
+            ✨ {t.nav.creativeAlchemy}
+          </button>
+
 
           <div className="pt-2 flex flex-col gap-2.5">
             {/* Language row in mobile */}
@@ -189,13 +226,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
             </button>
 
-            <a
-              href="#hrvatski"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center bg-pink-50 dark:bg-pink-900/40 text-primary border border-pink-200 dark:border-pink-800 px-4 py-2.5 rounded-full font-medium"
-            >
-              {t.nav.croatianEdition}
-            </a>
 
             <button
               onClick={() => {
