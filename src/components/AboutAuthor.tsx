@@ -132,7 +132,7 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
                     A Life Journey in Watercolour
                   </h4>
                   <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
-                    The image is looking for <code className="bg-white dark:bg-slate-700 px-2 py-0.5 rounded text-xs font-mono text-primary font-bold">/public/A Life Journey in Watercolour_v2.jpg</code> in your repository.
+                    The image is looking for <code className="bg-white dark:bg-slate-700 px-2 py-0.5 rounded text-xs font-mono text-primary font-bold">/public/A Life Journey in Watercolour_v3.jpg</code> in your repository.
                   </p>
                   <div className="pt-2">
                     <label
