@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  ArrowLeft,
   Heart,
   Youtube,
   Play,
@@ -18,10 +17,10 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 
 interface HealingExpressionPageProps {
-  onBackHome: () => void;
+  onBackHome?: () => void;
 }
 
-export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = ({ onBackHome }) => {
+export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () => {
   const { language, t } = useLanguage();
   const isHr = language === 'hr';
 
@@ -221,17 +220,6 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = ({ on
 
   return (
     <div className="pt-20 md:pt-24 pb-20 animate-in fade-in duration-300">
-      {/* Back to Home Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-        <button
-          onClick={onBackHome}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-[#d84868] transition-colors py-2 px-4 rounded-full bg-pink-50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-900/50 cursor-pointer hover:shadow-xs"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>{t.healingPage.backHome}</span>
-        </button>
-      </div>
-
       {/* Hero Header */}
       <section className="max-w-5xl mx-auto px-4 text-center mb-16 md:mb-20">
         <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest bg-pink-50 dark:bg-pink-900/40 border border-pink-200 dark:border-pink-800/60 px-4 py-1.5 rounded-full mb-4">
