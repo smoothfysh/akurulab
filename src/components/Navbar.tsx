@@ -43,22 +43,23 @@ export const Navbar: React.FC<NavbarProps> = ({
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-black/80 backdrop-blur-md border-b border-[#DEE5D4] dark:border-slate-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Brand - Flask Pouring Into Open Book Logo */}
+          {/* Brand - AKURU♦LAB */}
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               onNavigateHome();
             }}
-            className="flex-shrink-0 flex items-center group focus:outline-none py-1 cursor-pointer"
+            className="flex-shrink-0 flex items-center group focus:outline-none py-1 cursor-pointer select-none"
             aria-label="AkuruLab"
             title="AkuruLab"
           >
-            <img
-              src="./Flask Pouring Into Open Book Logo.png"
-              alt="AkuruLab Logo"
-              className="h-12 sm:h-14 w-auto max-h-full object-contain dark:brightness-0 dark:invert transition-transform group-hover:scale-105"
-            />
+            <span
+              className="text-2xl sm:text-3xl text-primary font-bold tracking-wide transition-transform group-hover:scale-105"
+              style={{ fontFamily: "'Dancing Script', cursive" }}
+            >
+              AKURU♦LAB
+            </span>
           </a>
 
           {/* Desktop Navigation */}

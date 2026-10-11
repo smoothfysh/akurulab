@@ -44,8 +44,9 @@ export const translations = {
     hero: {
       badge: 'Self-Published Memoir & Art',
       title: "It's just tits",
-      subtitle: 'A journey of resilience, art, and reclaiming womanhood.',
-      description: 'A raw and beautiful exploration of breast cancer recovery. Milena shares her story not just through words, but through the vibrant watercolor lens of healing.',
+      subtitle: 'A journey of resilience and reclaiming womanhood.',
+      description:
+        "Cancer wasn't some poetic awakening—it was hard, messy, and deeply emotional. In this raw exploration of recovery, I share how I completely lost myself along the way, had to strip everything down, and slowly rebuild myself from the ground up. Told through my story and the vibrant watercolor lens of healing, this book isn't about sugarcoating the struggle. It's about coming out stronger and wiser, and sharing the hard-earned lessons so you don't have to make the same mistakes I did.",
       buyKindle: 'Buy English version from Amazon',
       orderPaperback: 'Knjiga na hrvatskom',
       previewExcerpt: 'Preview Excerpt',
@@ -261,8 +262,9 @@ export const translations = {
     hero: {
       badge: 'Samostalno objavljeni memoar i umjetnost',
       title: 'To su samo sise',
-      subtitle: 'Put otpornosti, umjetnosti i ponovnog osvajanja ženstvenosti.',
-      description: 'Sirovo i prekrasno istraživanje oporavka od raka dojke. Milena dijeli svoju priču ne samo riječima, već i kroz živopisnu akvarelnu prizmu iscjeljenja.',
+      subtitle: 'Put otpornosti i ponovnog osvajanja ženstvenosti.',
+      description:
+        'Rak nije bio nikakvo poetsko buđenje—bio je težak, kaotičan i duboko emotivan. U ovom sirovom istraživanju oporavka dijelim kako sam se putem potpuno izgubila, morala ogoliti sve do temelja i polako se ponovno izgraditi. Ispričana kroz moju priču i živopisnu akvarelnu prizmu iscjeljenja, ova knjiga ne uljepšava borbu. Riječ je o tome kako iz svega izaći snažniji i mudriji te prenijeti teško stečene lekcije kako ne biste morali raditi iste greške koje sam napravila ja.',
       buyKindle: 'Kupi englesko izdanje na Amazonu',
       orderPaperback: 'Knjiga na hrvatskom',
       previewExcerpt: 'Prolistaj ulomak',

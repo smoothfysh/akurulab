@@ -22,9 +22,15 @@ export const AboutPlatform: React.FC<AboutPlatformProps> = ({
       <div className="max-w-5xl mx-auto">
         {/* Header & Quote */}
         <div className="text-center mb-16">
-          <span className="text-primary font-bold tracking-widest uppercase text-xs inline-block bg-pink-50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-900/50 px-3.5 py-1 rounded-full mb-4">
-            {t.platform.badge}
-          </span>
+          <div className="flex justify-center mb-6">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white shadow-md border border-[#DEE5D4] dark:border-slate-700/60 flex items-center justify-center p-3.5 sm:p-4 transition-transform duration-300 hover:scale-105">
+              <img
+                src="./Flask Pouring Into Open Book Logo.png"
+                alt="AkuruLab Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
           <h2
             className="text-4xl md:text-5xl mb-6 text-slate-900 dark:text-white font-serif tracking-tight"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}

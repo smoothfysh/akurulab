@@ -30,12 +30,10 @@ export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt, onOpenCroatia
               style={{ perspective: '1200px' }}
             >
               <div
-                className="relative rounded-r-md rounded-l-sm overflow-hidden bg-white dark:bg-slate-800 book-shadow-3d transition-transform duration-500"
+                className="relative rounded-r-md rounded-l-sm overflow-hidden bg-white dark:bg-slate-800 book-shadow-3d transition-transform duration-500 w-[290px] sm:w-[330px] md:w-[340px] lg:w-[370px] xl:w-[390px] max-w-[85vw]"
                 style={{
                   transform: 'rotateY(-8deg) rotateX(2deg)',
                   transformStyle: 'preserve-3d',
-                  width: '280px',
-                  maxWidth: '85vw',
                 }}
               >
                 {/* Book Cover Image - adaptive to language */}
@@ -113,6 +111,7 @@ export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt, onOpenCroatia
               <span>{t.hero.orderPaperback}</span>
             </a>
 
+            {/* CTA 3: PREVIEW EXCERPT - Temporarily hidden until excerpt content is finalized
             <button
               onClick={onOpenExcerpt}
               className="px-6 py-3.5 rounded-full text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary border border-slate-300 dark:border-slate-700 hover:border-primary/50 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm transition-all flex items-center gap-2 text-sm font-medium cursor-pointer"
@@ -120,6 +119,7 @@ export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt, onOpenCroatia
               <Eye className="w-4 h-4 text-primary" />
               <span>{t.hero.previewExcerpt}</span>
             </button>
+            */}
           </div>
         </div>
       </div>
