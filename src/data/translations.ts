@@ -112,7 +112,7 @@ export const translations = {
     orderModal: {
       badge: 'Book Order',
       title: 'To su samo sise',
-      subtitle: 'Fill in your details to order the Croatian edition (20.00 € + shipping).',
+      subtitle: 'Fill in your details to order the Croatian edition (12.50 € + shipping).',
       fullName: 'Full Name *',
       fullNamePlaceholder: 'e.g. Ana Horvat',
       email: 'Email Address *',
@@ -329,7 +329,7 @@ export const translations = {
     orderModal: {
       badge: 'Narudžba knjige',
       title: 'To su samo sise',
-      subtitle: 'Ispunite podatke za narudžbu i dostavu hrvatskog izdanja (20,00 € + dostava).',
+      subtitle: 'Ispunite podatke za narudžbu i dostavu hrvatskog izdanja (12,50 € + dostava).',
       fullName: 'Ime i prezime *',
       fullNamePlaceholder: 'npr. Ana Horvat',
       email: 'Email adresa *',

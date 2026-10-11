@@ -10,11 +10,31 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const detectBrowserLanguage = (): Language => {
+  if (typeof window === 'undefined') return 'en';
+  try {
+    const navLangs = [
+      navigator.language,
+      ...(Array.isArray(navigator.languages) ? navigator.languages : []),
+    ].filter(Boolean);
+
+    for (const lang of navLangs) {
+      if (typeof lang === 'string' && lang.toLowerCase().startsWith('hr')) {
+        return 'hr';
+      }
+    }
+  } catch {
+    // fallback
+  }
+  return 'en';
+};
+
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('milena_lang') as Language;
       if (saved === 'en' || saved === 'hr') return saved;
+      return detectBrowserLanguage();
     }
     return 'en';
   });

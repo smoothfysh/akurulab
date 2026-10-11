@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, Loader2, Send } from 'lucide-react';
 import { IMAGES } from '../data/stores';
 import { useLanguage } from '../context/LanguageContext';
@@ -8,8 +8,40 @@ interface OrderModalProps {
   onClose: () => void;
 }
 
+interface CountryOption {
+  code: string;
+  nameHr: string;
+  nameEn: string;
+}
+
+const COUNTRY_OPTIONS: CountryOption[] = [
+  { code: 'HR', nameHr: 'Hrvatska', nameEn: 'Croatia' },
+  { code: 'BA', nameHr: 'Bosna i Hercegovina', nameEn: 'Bosnia and Herzegovina' },
+  { code: 'SI', nameHr: 'Slovenija', nameEn: 'Slovenia' },
+  { code: 'RS', nameHr: 'Srbija', nameEn: 'Serbia' },
+  { code: 'ME', nameHr: 'Crna Gora', nameEn: 'Montenegro' },
+  { code: 'MK', nameHr: 'Sjeverna Makedonija', nameEn: 'North Macedonia' },
+  { code: 'DE', nameHr: 'Njemačka', nameEn: 'Germany' },
+  { code: 'AT', nameHr: 'Austrija', nameEn: 'Austria' },
+  { code: 'CH', nameHr: 'Švicarska', nameEn: 'Switzerland' },
+  { code: 'IT', nameHr: 'Italija', nameEn: 'Italy' },
+  { code: 'GB', nameHr: 'Ujedinjeno Kraljevstvo', nameEn: 'United Kingdom' },
+  { code: 'IE', nameHr: 'Irska', nameEn: 'Ireland' },
+  { code: 'US', nameHr: 'Sjedinjene Američke Države', nameEn: 'United States' },
+  { code: 'CA', nameHr: 'Kanada', nameEn: 'Canada' },
+  { code: 'AU', nameHr: 'Australija', nameEn: 'Australia' },
+  { code: 'FR', nameHr: 'Francuska', nameEn: 'France' },
+  { code: 'NL', nameHr: 'Nizozemska', nameEn: 'Netherlands' },
+  { code: 'BE', nameHr: 'Belgija', nameEn: 'Belgium' },
+  { code: 'SE', nameHr: 'Švedska', nameEn: 'Sweden' },
+  { code: 'NO', nameHr: 'Norveška', nameEn: 'Norway' },
+  { code: 'DK', nameHr: 'Danska', nameEn: 'Denmark' },
+  { code: 'OTHER', nameHr: 'Druga država (navesti u adresi)', nameEn: 'Other Country (specify in address)' },
+];
+
 export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
-  const { language } = useLanguage();
+  const { language, setLanguage } = useLanguage();
+  const isHr = language === 'hr';
 
   // Product Selection
   const [quantity, setQuantity] = useState(1);
@@ -32,6 +64,16 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
   const [city, setCity] = useState('');
   const [stateProvince, setStateProvince] = useState('');
   const [postalCode, setPostalCode] = useState('');
+  const [country, setCountry] = useState(isHr ? 'Hrvatska' : 'Croatia');
+
+  // Keep country synchronized with language if default
+  useEffect(() => {
+    if (isHr && country === 'Croatia') {
+      setCountry('Hrvatska');
+    } else if (!isHr && country === 'Hrvatska') {
+      setCountry('Croatia');
+    }
+  }, [isHr]);
 
   // Submission Status
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,27 +88,53 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
     setErrorMessage('');
 
     const formattedPhone = `${countryCode} ${areaCode ? areaCode + ' ' : ''}${phoneNumber}`.trim();
-    const formattedAddress = `${streetAddress}${streetAddress2 ? ', ' + streetAddress2 : ''}, ${city}, ${stateProvince ? stateProvince + ', ' : ''}${postalCode}`.trim();
+    const formattedAddress = `${streetAddress}${streetAddress2 ? ', ' + streetAddress2 : ''}, ${city}, ${stateProvince ? stateProvince + ', ' : ''}${postalCode}, ${country}`.trim();
 
     const orderPayload = {
-      _subject: `New Book Order: To su samo sise - ${firstName} ${lastName}`,
-      'Full Name': `${firstName} ${lastName}`,
-      'First Name': firstName,
-      'Last Name': lastName,
-      'Email': email,
-      'Phone Number': formattedPhone,
-      'Product': 'To su samo sise',
-      'Quantity': quantity,
-      'Unit Price': `€${unitPrice.toFixed(2)}`,
-      'Subtotal': `€${subtotal.toFixed(2)}`,
-      'Shipping Fee': `€${shippingFee.toFixed(2)}`,
-      'Total Amount': `€${total.toFixed(2)}`,
-      'Street Address': streetAddress,
-      'Street Address Line 2': streetAddress2 || 'N/A',
-      'City': city,
-      'State / Province': stateProvince || 'N/A',
-      'Postal / Zip Code': postalCode,
-      'Full Shipping Address': formattedAddress,
+      _subject: isHr
+        ? `Nova narudžba knjige: To su samo sise - ${firstName} ${lastName}`
+        : `New Book Order: To su samo sise - ${firstName} ${lastName}`,
+      ...(isHr
+        ? {
+            'Ime i prezime': `${firstName} ${lastName}`,
+            'Ime': firstName,
+            'Prezime': lastName,
+            'E-mail': email,
+            'Broj telefona': formattedPhone,
+            'Proizvod': 'To su samo sise',
+            'Količina': quantity,
+            'Cijena po komadu': `€${unitPrice.toFixed(2)}`,
+            'Iznos': `€${subtotal.toFixed(2)}`,
+            'Dostava': `€${shippingFee.toFixed(2)}`,
+            'Ukupan iznos': `€${total.toFixed(2)}`,
+            'Ulica i kućni broj': streetAddress,
+            'Dodatni podaci adrese': streetAddress2 || 'N/A',
+            'Grad': city,
+            'Županija / Regija': stateProvince || 'N/A',
+            'Poštanski broj': postalCode,
+            'Država': country,
+            'Puna adresa za dostavu': formattedAddress,
+          }
+        : {
+            'Full Name': `${firstName} ${lastName}`,
+            'First Name': firstName,
+            'Last Name': lastName,
+            'Email': email,
+            'Phone Number': formattedPhone,
+            'Product': 'To su samo sise',
+            'Quantity': quantity,
+            'Unit Price': `€${unitPrice.toFixed(2)}`,
+            'Subtotal': `€${subtotal.toFixed(2)}`,
+            'Shipping Fee': `€${shippingFee.toFixed(2)}`,
+            'Total Amount': `€${total.toFixed(2)}`,
+            'Street Address': streetAddress,
+            'Street Address Line 2': streetAddress2 || 'N/A',
+            'City': city,
+            'State / Province': stateProvince || 'N/A',
+            'Postal / Zip Code': postalCode,
+            'Country': country,
+            'Full Shipping Address': formattedAddress,
+          }),
       _replyto: email,
       _template: 'table',
     };
@@ -109,12 +177,12 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
     setCity('');
     setStateProvince('');
     setPostalCode('');
+    setCountry(isHr ? 'Hrvatska' : 'Croatia');
     setQuantity(1);
     onClose();
   };
 
   // Text labels based on language
-  const isHr = language === 'hr';
   const titleText = isHr ? 'Naruči knjigu' : 'Order the Book';
   const subtitleText = isHr
     ? 'Ispunite obrazac u nastavku kako biste naručili knjigu. Poslat ću vam podatke za plaćanje putem e-maila. Slanje knjige započinje tek nakon zaprimljene uplate.'
@@ -124,21 +192,49 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto animate-in fade-in"
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (e.target === e.currentTarget) handleReset();
       }}
     >
       <div
         className="bg-white dark:bg-slate-900 rounded-2xl max-w-2xl w-full p-6 sm:p-10 shadow-2xl border border-slate-200 dark:border-slate-800 relative my-8 max-h-[92vh] overflow-y-auto text-slate-900 dark:text-slate-100"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-          aria-label="Close"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Top actions: Language Switcher & Close Button */}
+        <div className="absolute top-5 right-5 flex items-center gap-2">
+          <div className="flex items-center rounded-full bg-slate-100 dark:bg-slate-800 p-0.5 border border-pink-100 dark:border-slate-700 shadow-xs text-xs font-bold">
+            <button
+              type="button"
+              onClick={() => setLanguage('en')}
+              className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
+                language === 'en'
+                  ? 'bg-primary text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-primary'
+              }`}
+              title="English"
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              onClick={() => setLanguage('hr')}
+              className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
+                language === 'hr'
+                  ? 'bg-primary text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-primary'
+              }`}
+              title="Hrvatski"
+            >
+              HR
+            </button>
+          </div>
+          <button
+            onClick={handleReset}
+            className="p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+            aria-label={isHr ? 'Zatvori' : 'Close'}
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
         {isSubmitted ? (
           <div className="py-8 text-center space-y-5">
@@ -182,6 +278,10 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                 <span>{isHr ? 'Adresa za dostavu:' : 'Delivery Address:'}</span>
                 <span className="font-medium text-slate-900 dark:text-white text-right max-w-[200px]">{streetAddress}, {city}</span>
               </div>
+              <div className="flex justify-between text-slate-600 dark:text-slate-300">
+                <span>{isHr ? 'Država:' : 'Country:'}</span>
+                <span className="font-semibold text-slate-900 dark:text-white">{country}</span>
+              </div>
               <div className="flex justify-between border-t border-slate-200 dark:border-slate-700 pt-2.5 font-bold text-base text-slate-900 dark:text-white">
                 <span>{isHr ? 'Ukupno za platiti:' : 'Total Amount:'}</span>
                 <span className="text-emerald-600 dark:text-emerald-400">€{total.toFixed(2)}</span>
@@ -197,7 +297,15 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
               </button>
 
               <a
-                href={`mailto:milenajayawardana@gmail.com?subject=Narudžba knjige: To su samo sise - ${encodeURIComponent(firstName + ' ' + lastName)}&body=Ime: ${encodeURIComponent(firstName + ' ' + lastName)}%0D%0AEmail: ${encodeURIComponent(email)}%0D%0ATelefon: ${encodeURIComponent(countryCode + ' ' + areaCode + ' ' + phoneNumber)}%0D%0AAdresa: ${encodeURIComponent(streetAddress + ', ' + city + ', ' + postalCode)}%0D%0AKoličina: ${quantity}%0D%0AUkupno: €${total.toFixed(2)}`}
+                href={`mailto:milenajayawardana@gmail.com?subject=${encodeURIComponent(
+                  isHr
+                    ? `Narudžba knjige: To su samo sise - ${firstName} ${lastName}`
+                    : `Book Order: To su samo sise - ${firstName} ${lastName}`
+                )}&body=${encodeURIComponent(
+                  isHr
+                    ? `Ime i prezime: ${firstName} ${lastName}\nEmail: ${email}\nTelefon: ${countryCode} ${areaCode} ${phoneNumber}\nAdresa: ${streetAddress}, ${city}, ${postalCode}\nDržava: ${country}\nKoličina: ${quantity}\nUkupno: €${total.toFixed(2)}`
+                    : `Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${countryCode} ${areaCode} ${phoneNumber}\nAddress: ${streetAddress}, ${city}, ${postalCode}\nCountry: ${country}\nQuantity: ${quantity}\nTotal: €${total.toFixed(2)}`
+                )}`}
                 className="w-full inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium py-3.5 px-6 rounded-xl transition-all"
               >
                 <Send className="w-4 h-4" />
@@ -339,18 +447,18 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                     <div>
                       <label className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
-                        {isHr ? 'E-mail' : 'Email'}
+                        {isHr ? 'E-mail adresa' : 'Email'}
                       </label>
                       <input
                         required
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="example@example.com"
+                        placeholder={isHr ? 'ivan.horvat@email.com' : 'example@example.com'}
                         className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                       />
                       <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
-                        example@example.com
+                        {isHr ? 'Vaša email adresa za potvrdu' : 'example@example.com'}
                       </span>
                     </div>
 
@@ -369,7 +477,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                             className="w-full px-2.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 text-center"
                           />
                           <span className="block text-[11px] text-slate-500 dark:text-slate-400 mt-1 text-center">
-                            {isHr ? 'Pozivni broj države' : 'Country Code'}
+                            {isHr ? 'Pozivni broj' : 'Country Code'}
                           </span>
                         </div>
                         <div>
@@ -381,7 +489,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                             className="w-full px-2.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 text-center"
                           />
                           <span className="block text-[11px] text-slate-500 dark:text-slate-400 mt-1 text-center">
-                            {isHr ? 'Pozivni broj' : 'Area Code'}
+                            {isHr ? 'Područni broj' : 'Area Code'}
                           </span>
                         </div>
                         <div>
@@ -390,11 +498,11 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                             type="tel"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
-                            placeholder="123 4567"
+                            placeholder={isHr ? '123 4567' : '123 4567'}
                             className="w-full px-2.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500"
                           />
                           <span className="block text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                            {isHr ? 'Broj' : 'Phone Number'}
+                            {isHr ? 'Broj telefona' : 'Phone Number'}
                           </span>
                         </div>
                       </div>
@@ -412,12 +520,13 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
-                      {isHr ? 'Ulica i kućni broj' : 'Shipping & Billing Address'}
+                      {isHr ? 'Ulica i kućni broj' : 'Shipping Address'} <span className="text-red-500">*</span>
                     </label>
                     <input
                       required
                       type="text"
                       value={streetAddress}
+                      placeholder={isHr ? 'npr. Ilica 10' : 'e.g. 123 Main St'}
                       onChange={(e) => setStreetAddress(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     />
@@ -430,11 +539,12 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                     <input
                       type="text"
                       value={streetAddress2}
+                      placeholder={isHr ? 'Stan, kat, ulaz (opcionalno)' : 'Apartment, suite, unit (optional)'}
                       onChange={(e) => setStreetAddress2(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     />
                     <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
-                      {isHr ? 'Dodatni podaci adrese (npr. stan, kat)' : 'Street Address Line 2'}
+                      {isHr ? 'Dodatni podaci adrese (opcionalno)' : 'Street Address Line 2 (optional)'}
                     </span>
                   </div>
 
@@ -444,6 +554,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                         required
                         type="text"
                         value={city}
+                        placeholder={isHr ? 'Grad' : 'City'}
                         onChange={(e) => setCity(e.target.value)}
                         className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                       />
@@ -456,6 +567,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                       <input
                         type="text"
                         value={stateProvince}
+                        placeholder={isHr ? 'Županija / Regija (opcionalno)' : 'State / Province (optional)'}
                         onChange={(e) => setStateProvince(e.target.value)}
                         className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                       />
@@ -470,11 +582,34 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                       required
                       type="text"
                       value={postalCode}
+                      placeholder={isHr ? 'npr. 10000' : 'e.g. 10000'}
                       onChange={(e) => setPostalCode(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
                     />
                     <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
                       {isHr ? 'Poštanski broj' : 'Postal / Zip Code'}
+                    </span>
+                  </div>
+
+                  {/* Country Selector */}
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
+                      {isHr ? 'Država' : 'Country'} <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      required
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all cursor-pointer font-medium"
+                    >
+                      {COUNTRY_OPTIONS.map((c) => (
+                        <option key={c.code} value={isHr ? c.nameHr : c.nameEn}>
+                          {isHr ? c.nameHr : c.nameEn}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      {isHr ? 'Odaberite državu za dostavu paketa' : 'Select delivery destination country'}
                     </span>
                   </div>
                 </div>
@@ -496,7 +631,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose }) => {
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      <span>{isHr ? 'Slanje...' : 'Submitting...'}</span>
+                      <span>{isHr ? 'Slanje narudžbe...' : 'Submitting order...'}</span>
                     </>
                   ) : (
                     <span>{isHr ? 'Naruči ovdje' : 'Order Here'}</span>

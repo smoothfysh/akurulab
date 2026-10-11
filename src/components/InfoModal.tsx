@@ -10,7 +10,7 @@ interface InfoModalProps {
 }
 
 export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
-  const { language, t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactMsg, setContactMsg] = useState('');
@@ -23,11 +23,22 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const isHr = language === 'hr';
     const messagePayload = {
-      _subject: `New Message from ${contactName} - AkuruLab`,
-      'Sender Name': contactName,
-      'Email': contactEmail,
-      'Message': contactMsg,
+      _subject: isHr
+        ? `Nova poruka od ${contactName} - AkuruLab`
+        : `New Message from ${contactName} - AkuruLab`,
+      ...(isHr
+        ? {
+            'Ime i prezime': contactName,
+            'E-mail adresa': contactEmail,
+            'Poruka': contactMsg,
+          }
+        : {
+            'Sender Name': contactName,
+            'Email': contactEmail,
+            'Message': contactMsg,
+          }),
       _replyto: contactEmail,
       _template: 'table',
     };
@@ -102,12 +113,42 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
         className="bg-white dark:bg-slate-900 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-pink-100 dark:border-slate-800 relative max-h-[85vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          onClick={handleReset}
-          className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Top Actions: Language switcher & Close */}
+        <div className="absolute top-5 right-5 flex items-center gap-2">
+          <div className="flex items-center rounded-full bg-slate-100 dark:bg-slate-800 p-0.5 border border-pink-100 dark:border-slate-700 shadow-xs text-xs font-bold">
+            <button
+              type="button"
+              onClick={() => setLanguage('en')}
+              className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
+                language === 'en'
+                  ? 'bg-primary text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-primary'
+              }`}
+              title="English"
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              onClick={() => setLanguage('hr')}
+              className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
+                language === 'hr'
+                  ? 'bg-primary text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-primary'
+              }`}
+              title="Hrvatski"
+            >
+              HR
+            </button>
+          </div>
+          <button
+            onClick={handleReset}
+            className="p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+            aria-label={language === 'hr' ? 'Zatvori' : 'Close'}
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
         <div className="flex items-center gap-3 mb-5">
           <div className="p-2.5 rounded-xl bg-pink-50 dark:bg-pink-900/30">
@@ -256,7 +297,13 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
                       {t.infoModal.close}
                     </button>
                     <a
-                      href={`mailto:milenajayawardana@gmail.com?subject=Poruka za Milenu - ${encodeURIComponent(contactName)}&body=Ime: ${encodeURIComponent(contactName)}%0D%0AEmail: ${encodeURIComponent(contactEmail)}%0D%0APoruka: ${encodeURIComponent(contactMsg)}`}
+                      href={`mailto:milenajayawardana@gmail.com?subject=${encodeURIComponent(
+                        language === 'hr' ? `Poruka za Milenu - ${contactName}` : `Message for Milena - ${contactName}`
+                      )}&body=${encodeURIComponent(
+                        language === 'hr'
+                          ? `Ime: ${contactName}\nEmail: ${contactEmail}\nPoruka: ${contactMsg}`
+                          : `Name: ${contactName}\nEmail: ${contactEmail}\nMessage: ${contactMsg}`
+                      )}`}
                       className="w-full inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium py-2.5 px-4 rounded-full text-xs transition-all"
                     >
                       <Send className="w-3.5 h-3.5" />
@@ -278,6 +325,7 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
                       type="text"
                       disabled={isSubmitting}
                       value={contactName}
+                      placeholder={language === 'hr' ? 'npr. Ana Horvat' : 'e.g. Jane Doe'}
                       onChange={(e) => setContactName(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm focus:outline-none focus:border-primary disabled:opacity-60"
                     />
@@ -291,6 +339,7 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
                       type="email"
                       disabled={isSubmitting}
                       value={contactEmail}
+                      placeholder={language === 'hr' ? 'ana@example.com' : 'jane@example.com'}
                       onChange={(e) => setContactEmail(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm focus:outline-none focus:border-primary disabled:opacity-60"
                     />
@@ -304,6 +353,7 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
                       rows={3}
                       disabled={isSubmitting}
                       value={contactMsg}
+                      placeholder={language === 'hr' ? 'Napišite svoju poruku...' : 'Write your message here...'}
                       onChange={(e) => setContactMsg(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#fffdf2] dark:bg-slate-800 text-sm focus:outline-none focus:border-primary disabled:opacity-60"
                     />
