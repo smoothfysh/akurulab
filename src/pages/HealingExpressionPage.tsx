@@ -219,11 +219,6 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
     <div className="pt-20 md:pt-24 pb-20 animate-in fade-in duration-300">
       {/* Hero Header */}
       <section className="max-w-5xl mx-auto px-4 text-center mb-16 md:mb-20">
-        <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest bg-pink-50 dark:bg-pink-900/40 border border-pink-200 dark:border-pink-800/60 px-4 py-1.5 rounded-full mb-4">
-          <Heart className="w-3.5 h-3.5 fill-current" />
-          <span>{t.healingPage.badge}</span>
-        </div>
-
         <h1
           className="text-4xl sm:text-5xl md:text-6xl text-slate-900 dark:text-white mb-6 font-serif tracking-tight"
           style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
@@ -423,9 +418,9 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
             href="https://www.youtube.com/@GeaKafePodcast"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all group"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#E07278] hover:bg-[#D46067] text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all group"
           >
-            <div className="w-8 h-8 rounded-full bg-white text-red-600 flex items-center justify-center transition-transform group-hover:scale-110 shadow-xs flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-white/95 text-[#E07278] flex items-center justify-center transition-transform group-hover:scale-110 shadow-xs flex-shrink-0">
               <Youtube className="w-4 h-4 fill-current" />
             </div>
             <span>{t.healingPage.visitYoutubeChannel}</span>
@@ -437,9 +432,9 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
             href="https://open.spotify.com/show/0340FjcnjSdtzmUWnG4361"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#1DB954] hover:bg-[#1aa34a] text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all group"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#52B77C] hover:bg-[#43A66C] text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all group"
           >
-            <div className="w-8 h-8 rounded-full bg-white text-[#1DB954] flex items-center justify-center transition-transform group-hover:scale-110 shadow-xs flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-white/95 text-[#52B77C] flex items-center justify-center transition-transform group-hover:scale-110 shadow-xs flex-shrink-0">
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.497 17.306c-.215.352-.676.464-1.028.249-2.817-1.722-6.363-2.111-10.54-1.157-.402.092-.801-.16-.893-.562-.092-.403.16-.802.562-.894 4.571-1.044 8.492-.598 11.65 1.336.352.215.464.676.249 1.028zm1.468-3.264c-.27.44-.848.58-1.288.31-3.225-1.982-8.142-2.557-11.958-1.399-.499.152-1.03-.135-1.181-.634-.152-.499.135-1.03.634-1.181 4.364-1.325 9.791-.684 13.483 1.586.44.27.58.848.31 1.288zm.126-3.41c-3.867-2.296-10.248-2.508-13.941-1.387-.593.18-1.22-.16-1.4-.753-.18-.593.16-1.22.753-1.4 4.246-1.289 11.295-1.042 15.753 1.604.533.316.708 1.011.392 1.544-.316.533-1.011.708-1.544.392z" />
               </svg>

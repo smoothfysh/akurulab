@@ -100,7 +100,7 @@ export const AboutPlatform: React.FC<AboutPlatformProps> = ({
             </span>
           </div>
 
-          {/* Card 2: Healing & Expression (Clickable -> Opens Healing & Expression Page) */}
+          {/* Card 2: Support & Community (Clickable -> Opens Support & Community Page) */}
           <div
             onClick={onOpenHealingExpression}
             className="p-8 bg-white dark:bg-slate-800 rounded-2xl border-2 border-pink-200 dark:border-pink-900/60 shadow-sm hover:border-primary hover:shadow-xl hover:-translate-y-1.5 transition-all cursor-pointer group relative overflow-hidden"

@@ -29,7 +29,12 @@ function AppContent() {
   const [currentPage, setCurrentPage] = useState<PageType>(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.toLowerCase();
-      if (hash.includes('healing-expression') || hash.includes('healing')) {
+      if (
+        hash.includes('support-community') ||
+        hash.includes('support') ||
+        hash.includes('healing-expression') ||
+        hash.includes('healing')
+      ) {
         return 'healing-expression';
       }
       if (hash.includes('creative-alchemy') || hash.includes('where-to-buy') || hash.includes('hrvatski')) {
@@ -60,7 +65,12 @@ function AppContent() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
-      if (hash.includes('healing-expression') || hash.includes('healing')) {
+      if (
+        hash.includes('support-community') ||
+        hash.includes('support') ||
+        hash.includes('healing-expression') ||
+        hash.includes('healing')
+      ) {
         setCurrentPage('healing-expression');
       } else if (hash.includes('creative-alchemy') || hash.includes('where-to-buy') || hash.includes('hrvatski')) {
         setCurrentPage('creative-alchemy');
@@ -76,7 +86,7 @@ function AppContent() {
   const navigateTo = (page: PageType) => {
     setCurrentPage(page);
     if (page === 'healing-expression') {
-      window.location.hash = '#/healing-expression';
+      window.location.hash = '#/support-community';
     } else if (page === 'creative-alchemy') {
       window.location.hash = '#/creative-alchemy';
     } else {
