@@ -35,6 +35,9 @@ export const translations = {
       p2: 'My Sri Lankan husband and I met in the UK, and we’ve been navigating life and IT careers across Europe ever since. It was an incredible, fast-paced ride, but five years ago we decided to trade the city hustle for the coast, finally settling back to my home town, Pula in Croatia.',
       p3: 'Today, our life is a mix of Mediterranean soul and South Asian warmth. That’s actually why I named this site Akuru. It means "letters" in Sinhala (අකුරු), a nod to my husband’s roots and the new chapter I’m writing here.',
       sendMessage: 'Send a message',
+      journeyBadge: 'Life Timeline',
+      journeyTitle: 'A Life Journey in Watercolour',
+      journeySubtitle: '“Same soul... new chapters, still unfolding”',
     },
     hero: {
       badge: 'Self-Published Memoir & Art',
@@ -205,6 +208,9 @@ export const translations = {
       p2: 'Moj suprug iz Šri Lanke i ja upoznali smo se u Velikoj Britaniji i od tada gradimo život i IT karijere diljem Europe. Bila je to nevjerojatna, dinamična vožnja, ali prije pet godina odlučili smo zamijeniti gradsku vrevu obalom te smo se konačno vratili u moj rodni grad, Pulu u Hrvatskoj.',
       p3: 'Danas je naš život spoj mediteranske duše i južnoazijske topline. Upravo zato sam ovu stranicu nazvala Akuru. To znači "slova" na sinhaleškom jeziku (අකුරු), kao posveta korijenima moga supruga i novom poglavlju koje ovdje pišem.',
       sendMessage: 'Pošalji poruku',
+      journeyBadge: 'Životna priča',
+      journeyTitle: 'Životno putovanje u akvarelu',
+      journeySubtitle: '“Ista duša... nova poglavlja, koja se još uvijek otvaraju”',
     },
     hero: {
       badge: 'Samostalno objavljeni memoar i umjetnost',
