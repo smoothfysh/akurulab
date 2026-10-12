@@ -23,7 +23,7 @@ export const AboutPlatform: React.FC<AboutPlatformProps> = ({
         {/* Header & Quote */}
         <div className="text-center mb-16">
           <div className="flex justify-center mb-6">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white shadow-md border border-[#DEE5D4] dark:border-slate-700/60 flex items-center justify-center p-3.5 sm:p-4 transition-transform duration-300 hover:scale-105">
+            <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-full bg-white shadow-lg border-2 border-[#DEE5D4] dark:border-slate-700/60 flex items-center justify-center p-4 sm:p-5 md:p-6 transition-transform duration-300 hover:scale-105">
               <img
                 src="./Flask Pouring Into Open Book Logo.png"
                 alt="AkuruLab - Creative Laboratory by Milena Jayawardana"
@@ -46,23 +46,68 @@ export const AboutPlatform: React.FC<AboutPlatformProps> = ({
         </div>
 
         {/* Central AkuruLab Lab Card */}
-        <div className="flex flex-col md:flex-row items-center gap-12 mb-16 bg-[#F8FAF4] dark:bg-slate-800/60 rounded-3xl p-8 md:p-12 border border-[#DEE5D4] dark:border-slate-700 shadow-sm transition-all duration-300">
-          <div className="w-full md:w-1/3 flex justify-center flex-shrink-0">
-            <div className="relative group">
-              <div className="absolute -inset-2 bg-gradient-to-r from-pink-300/30 to-yellow-200/30 rounded-full blur-xl opacity-70 group-hover:opacity-90 transition duration-500"></div>
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-white dark:border-slate-700 shadow-xl bg-white flex items-center justify-center p-3">
-                <img
-                  src={IMAGES.logo}
-                  alt="AkuruLab - The Creative Playground and Laboratory of Milena Jayawardana"
-                  className="w-full h-full object-contain rounded-full transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-2/3 space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-base md:text-lg">
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-12 mb-16 bg-[#F8FAF4] dark:bg-slate-800/60 rounded-3xl p-8 md:p-12 border border-[#DEE5D4] dark:border-slate-700 shadow-sm transition-all duration-300">
+          {/* Left Column: Text Section */}
+          <div className="w-full md:w-3/5 space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-base md:text-lg">
             <p>{t.platform.labP1}</p>
             <p>{t.platform.labP2}</p>
+          </div>
+
+          {/* Right Column: Torn Watercolor Paper Artwork Frame */}
+          <div className="w-full md:w-2/5 flex justify-center flex-shrink-0">
+            {/* The torn watercolor paper sheet with subtle drop shadow on hover */}
+            <div className="relative group transition-all duration-500 ease-out hover:-translate-y-1 drop-shadow-[0_2px_6px_rgba(0,0,0,0.04)] hover:drop-shadow-[0_12px_22px_rgba(40,25,20,0.14)] dark:drop-shadow-[0_2px_6px_rgba(0,0,0,0.2)] dark:hover:drop-shadow-[0_12px_22px_rgba(0,0,0,0.5)]">
+              {/* SVG Definitions for Torn Watercolor Paper Edge & Rough Fiber Texture */}
+              <svg className="absolute w-0 h-0 overflow-hidden pointer-events-none" aria-hidden="true">
+                <defs>
+                  {/* Rough cotton paper fiber noise texture */}
+                  <filter id="torn-paper-fibers" x="0%" y="0%" width="100%" height="100%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" result="noise" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0.18  0 0 0 0 0.15  0 0 0 0 0.12  0 0 0 0.18 0"
+                      result="coloredNoise"
+                    />
+                    <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise" />
+                  </filter>
+
+                  {/* Outer Torn Watercolor Paper Frame Clip Path */}
+                  <clipPath id="torn-paper-outer" clipPathUnits="objectBoundingBox">
+                    <polygon points="0.0000 0.0095, 0.0313 0.0126, 0.0625 0.0130, 0.0938 0.0135, 0.1250 0.0143, 0.1563 0.0080, 0.1875 0.0093, 0.2188 0.0098, 0.2500 0.0136, 0.2813 0.0129, 0.3125 0.0174, 0.3438 0.0146, 0.3750 0.0128, 0.4063 0.0117, 0.4375 0.0092, 0.4688 0.0103, 0.5000 0.0119, 0.5313 0.0165, 0.5625 0.0171, 0.5938 0.0163, 0.6250 0.0114, 0.6563 0.0105, 0.6875 0.0097, 0.7188 0.0121, 0.7500 0.0119, 0.7813 0.0137, 0.8125 0.0148, 0.8438 0.0121, 0.8750 0.0107, 0.9063 0.0115, 0.9375 0.0081, 0.9688 0.0085, 1.0000 0.0141, 0.9929 0.0000, 0.9921 0.0313, 0.9851 0.0625, 0.9857 0.0938, 0.9864 0.1250, 0.9848 0.1563, 0.9915 0.1875, 0.9932 0.2188, 0.9898 0.2500, 0.9877 0.2813, 0.9848 0.3125, 0.9838 0.3438, 0.9867 0.3750, 0.9908 0.4063, 0.9905 0.4375, 0.9923 0.4688, 0.9860 0.5000, 0.9860 0.5313, 0.9835 0.5625, 0.9878 0.5938, 0.9897 0.6250, 0.9891 0.6563, 0.9899 0.6875, 0.9859 0.7188, 0.9858 0.7500, 0.9848 0.7813, 0.9841 0.8125, 0.9909 0.8438, 0.9883 0.8750, 0.9889 0.9063, 0.9905 0.9375, 0.9867 0.9688, 0.9866 1.0000, 1.0000 0.9895, 0.9688 0.9859, 0.9375 0.9846, 0.9063 0.9849, 0.8750 0.9857, 0.8438 0.9900, 0.8125 0.9900, 0.7813 0.9878, 0.7500 0.9886, 0.7188 0.9878, 0.6875 0.9832, 0.6563 0.9880, 0.6250 0.9890, 0.5938 0.9899, 0.5625 0.9896, 0.5313 0.9897, 0.5000 0.9871, 0.4688 0.9880, 0.4375 0.9856, 0.4063 0.9842, 0.3750 0.9857, 0.3438 0.9908, 0.3125 0.9914, 0.2813 0.9897, 0.2500 0.9865, 0.2188 0.9834, 0.1875 0.9862, 0.1563 0.9874, 0.1250 0.9870, 0.0938 0.9893, 0.0625 0.9894, 0.0313 0.9919, 0.0000 0.9868, 0.0103 1.0000, 0.0100 0.9688, 0.0129 0.9375, 0.0130 0.9063, 0.0151 0.8750, 0.0126 0.8438, 0.0087 0.8125, 0.0089 0.7813, 0.0108 0.7500, 0.0111 0.7188, 0.0136 0.6875, 0.0139 0.6563, 0.0128 0.6250, 0.0126 0.5938, 0.0071 0.5625, 0.0097 0.5313, 0.0108 0.5000, 0.0125 0.4688, 0.0140 0.4375, 0.0126 0.4063, 0.0101 0.3750, 0.0101 0.3438, 0.0088 0.3125, 0.0109 0.2813, 0.0162 0.2500, 0.0169 0.2188, 0.0138 0.1875, 0.0124 0.1563, 0.0088 0.1250, 0.0096 0.0938, 0.0126 0.0625, 0.0124 0.0313, 0.0157 0.0000" />
+                  </clipPath>
+
+                  {/* Inner Artwork Clip Path */}
+                  <clipPath id="torn-paper-inner" clipPathUnits="objectBoundingBox">
+                    <polygon points="0.0000 0.0215, 0.0313 0.0257, 0.0625 0.0287, 0.0938 0.0246, 0.1250 0.0227, 0.1563 0.0231, 0.1875 0.0235, 0.2188 0.0203, 0.2500 0.0246, 0.2813 0.0274, 0.3125 0.0251, 0.3438 0.0281, 0.3750 0.0222, 0.4063 0.0221, 0.4375 0.0205, 0.4688 0.0202, 0.5000 0.0239, 0.5313 0.0271, 0.5625 0.0247, 0.5938 0.0275, 0.6250 0.0218, 0.6563 0.0198, 0.6875 0.0204, 0.7188 0.0219, 0.7500 0.0231, 0.7813 0.0256, 0.8125 0.0289, 0.8438 0.0249, 0.8750 0.0244, 0.9063 0.0218, 0.9375 0.0206, 0.9688 0.0216, 1.0000 0.0225, 0.9786 0.0000, 0.9771 0.0313, 0.9774 0.0625, 0.9709 0.0938, 0.9740 0.1250, 0.9729 0.1563, 0.9800 0.1875, 0.9804 0.2188, 0.9785 0.2500, 0.9779 0.2813, 0.9740 0.3125, 0.9750 0.3438, 0.9754 0.3750, 0.9749 0.4063, 0.9806 0.4375, 0.9780 0.4688, 0.9784 0.5000, 0.9748 0.5313, 0.9718 0.5625, 0.9748 0.5938, 0.9778 0.6250, 0.9809 0.6563, 0.9777 0.6875, 0.9739 0.7188, 0.9752 0.7500, 0.9720 0.7813, 0.9744 0.8125, 0.9781 0.8438, 0.9764 0.8750, 0.9800 0.9063, 0.9777 0.9375, 0.9749 0.9688, 0.9729 1.0000, 1.0000 0.9779, 0.9688 0.9746, 0.9375 0.9746, 0.9063 0.9748, 0.8750 0.9745, 0.8438 0.9794, 0.8125 0.9805, 0.7813 0.9801, 0.7500 0.9746, 0.7188 0.9763, 0.6875 0.9707, 0.6563 0.9715, 0.6250 0.9773, 0.5938 0.9778, 0.5625 0.9814, 0.5313 0.9768, 0.5000 0.9778, 0.4688 0.9752, 0.4375 0.9724, 0.4063 0.9759, 0.3750 0.9759, 0.3438 0.9791, 0.3125 0.9788, 0.2813 0.9790, 0.2500 0.9783, 0.2188 0.9715, 0.1875 0.9738, 0.1563 0.9752, 0.1250 0.9761, 0.0938 0.9763, 0.0625 0.9798, 0.0313 0.9790, 0.0000 0.9737, 0.0234 1.0000, 0.0234 0.9688, 0.0243 0.9375, 0.0288 0.9063, 0.0250 0.8750, 0.0252 0.8438, 0.0202 0.8125, 0.0215 0.7813, 0.0195 0.7500, 0.0264 0.7188, 0.0289 0.6875, 0.0264 0.6563, 0.0254 0.6250, 0.0202 0.5938, 0.0228 0.5625, 0.0203 0.5313, 0.0225 0.5000, 0.0269 0.4688, 0.0271 0.4375, 0.0279 0.4063, 0.0218 0.3750, 0.0231 0.3438, 0.0206 0.3125, 0.0262 0.2813, 0.0280 0.2500, 0.0287 0.2188, 0.0237 0.1875, 0.0254 0.1563, 0.0221 0.1250, 0.0224 0.0938, 0.0220 0.0625, 0.0239 0.0313, 0.0265 0.0000" />
+                  </clipPath>
+                </defs>
+              </svg>
+
+              {/* Outer Torn Paper Frame with Rough Fiber Texture */}
+              <div
+                className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 p-2 sm:p-2.5 bg-[#FAF7F0] dark:bg-[#252321] flex items-center justify-center transition-all duration-300"
+                style={{ clipPath: 'url(#torn-paper-outer)' }}
+              >
+                {/* Fiber grain texture layer */}
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-45 dark:opacity-25 mix-blend-multiply"
+                  style={{ filter: 'url(#torn-paper-fibers)' }}
+                />
+
+                {/* Inner Artwork Image with Matching Torn Edge */}
+                <div
+                  className="relative w-full h-full overflow-hidden"
+                  style={{ clipPath: 'url(#torn-paper-inner)' }}
+                >
+                  <img
+                    src={IMAGES.logo}
+                    alt="AkuruLab - The Creative Playground and Laboratory of Milena Jayawardana"
+                    className="w-full h-full object-cover select-none transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
