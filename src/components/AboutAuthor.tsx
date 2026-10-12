@@ -38,6 +38,8 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
                 src={IMAGES.author}
                 alt="Milena Jayawardana - Author of It's Just Tits and Creator of AkuruLab"
                 className="w-full h-full object-cover object-center block"
+                width={684}
+                height={1024}
                 loading="lazy"
               />
             </div>
@@ -111,6 +113,8 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
                   onError={() => setImageFailedToLoad(true)}
                   alt="A Life Journey in Watercolour by Milena Jayawardana - Born in Pula, Croatia, Migrated to UK, Germany, Belgium, Back to Croatia"
                   className="w-full h-auto object-contain block rounded-xl group-hover:scale-[1.01] transition-transform duration-500"
+                  width={1024}
+                  height={1024}
                   loading="lazy"
                 />
               ) : (
@@ -122,7 +126,7 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
                     A Life Journey in Watercolour
                   </h4>
                   <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
-                    The image is looking for <code className="bg-white dark:bg-slate-700 px-2 py-0.5 rounded text-xs font-mono text-primary font-bold">/public/A Life Journey in Watercolour_v4.jpg</code> in your repository.
+                    The image is looking for <code className="bg-white dark:bg-slate-700 px-2 py-0.5 rounded text-xs font-mono text-primary font-bold">/public/A Life Journey in Watercolour_v5.jpg</code> in your repository.
                   </p>
                   <div className="pt-2">
                     <label
