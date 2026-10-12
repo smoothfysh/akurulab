@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://smoothfysh.github.io/akurulab/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smoothfysh.github.io/akurulab/" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://smoothfysh.github.io/akurulab/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://smoothfysh.github.io/akurulab/#/creative-alchemy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smoothfysh.github.io/akurulab/#/creative-alchemy" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://smoothfysh.github.io/akurulab/#/creative-alchemy" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://smoothfysh.github.io/akurulab/#/support-community</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smoothfysh.github.io/akurulab/#/support-community" />
+    <xhtml:link rel="alternate" hreflang="hr" href="https://smoothfysh.github.io/akurulab/#/support-community" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

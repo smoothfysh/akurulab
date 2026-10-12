@@ -366,14 +366,14 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
               href={card.youtubeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${card.title} - ${t.healingPage.watchOnYoutube}`}
+              aria-label={`GEA Kafe Podcast: ${card.title} - ${t.healingPage.watchOnYoutube}`}
               className="group relative block rounded-2xl sm:rounded-3xl overflow-hidden bg-[#FBF9F5] dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 focus:outline-none focus:ring-2 focus:ring-primary/50"
             >
               {/* Full Image Canvas with Overlays */}
               <div className="relative w-full aspect-[1696/2528] overflow-hidden bg-[#FBF9F5] dark:bg-slate-900">
                 <img
                   src={card.image}
-                  alt={card.title}
+                  alt={`GEA Kafe Podcast - ${card.title}`}
                   className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   loading="lazy"
                 />

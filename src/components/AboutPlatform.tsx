@@ -26,7 +26,7 @@ export const AboutPlatform: React.FC<AboutPlatformProps> = ({
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white shadow-md border border-[#DEE5D4] dark:border-slate-700/60 flex items-center justify-center p-3.5 sm:p-4 transition-transform duration-300 hover:scale-105">
               <img
                 src="./Flask Pouring Into Open Book Logo.png"
-                alt="AkuruLab Logo"
+                alt="AkuruLab - Creative Laboratory by Milena Jayawardana"
                 className="w-full h-full object-contain"
               />
             </div>
@@ -53,7 +53,7 @@ export const AboutPlatform: React.FC<AboutPlatformProps> = ({
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-white dark:border-slate-700 shadow-xl bg-white flex items-center justify-center p-3">
                 <img
                   src={IMAGES.logo}
-                  alt="AkuruLab Logo"
+                  alt="AkuruLab - The Creative Playground and Laboratory of Milena Jayawardana"
                   className="w-full h-full object-contain rounded-full transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />

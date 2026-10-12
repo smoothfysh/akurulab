@@ -39,7 +39,7 @@ export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt, onOpenCroatia
                 {/* Book Cover Image - adaptive to language */}
                 <img
                   src={language === 'hr' ? IMAGES.bookCroatian : IMAGES.bookEnglish}
-                  alt={language === 'hr' ? 'To su samo sise - Naslovnica knjige' : "It's Just Tits - Book Cover by Milena"}
+                  alt={language === 'hr' ? 'To su samo sise - Knjiga o raku dojke autorice Milene Jayawardana' : "It's Just Tits - Breast Cancer Memoir by Milena Jayawardana"}
                   className="w-full h-auto block select-none rounded-r-sm transition-opacity duration-300"
                   style={{ aspectRatio: '1600/2560', objectFit: 'cover' }}
                 />

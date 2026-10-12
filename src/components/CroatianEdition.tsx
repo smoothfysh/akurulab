@@ -96,7 +96,7 @@ export const CroatianEdition: React.FC<CroatianEditionProps> = ({ onOpenOrderMod
                   {/* Croatian Book Cover Image */}
                   <img
                     src={IMAGES.bookCroatian}
-                    alt="To su samo sise - Hrvatsko izdanje"
+                    alt="To su samo sise - Hrvatsko izdanje knjige o raku dojke autorice Milene Jayawardana"
                     className="w-full h-auto block select-none rounded-r-sm"
                     style={{ aspectRatio: '1600/2560', objectFit: 'cover' }}
                   />

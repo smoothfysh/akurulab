@@ -36,7 +36,7 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
             <div className="relative mx-auto max-w-sm rounded-2xl overflow-hidden shadow-2xl border-2 border-pink-100 dark:border-slate-700 transform hover:scale-[1.02] transition-transform duration-500 bg-slate-100 dark:bg-slate-800 aspect-[2/3]">
               <img
                 src={IMAGES.author}
-                alt="Milena - Author of It's Just Tits"
+                alt="Milena Jayawardana - Author of It's Just Tits and Creator of AkuruLab"
                 className="w-full h-full object-cover object-center block"
                 loading="lazy"
               />
@@ -109,7 +109,7 @@ export const AboutAuthor: React.FC<AboutAuthorProps> = ({ onContactClick }) => {
                 <img
                   src={journeyImageSrc}
                   onError={() => setImageFailedToLoad(true)}
-                  alt="A Life Journey in Watercolour - Born in Pula, Migrated to UK, Germany, Belgium, Back to Croatia"
+                  alt="A Life Journey in Watercolour by Milena Jayawardana - Born in Pula, Croatia, Migrated to UK, Germany, Belgium, Back to Croatia"
                   className="w-full h-auto object-contain block rounded-xl group-hover:scale-[1.01] transition-transform duration-500"
                   loading="lazy"
                 />

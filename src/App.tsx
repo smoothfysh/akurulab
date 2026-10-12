@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { LanguageProvider } from './context/LanguageContext';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { AboutPlatform } from './components/AboutPlatform';
 import { AboutAuthor } from './components/AboutAuthor';
@@ -18,6 +18,7 @@ import { HealingExpressionPage } from './pages/HealingExpressionPage';
 export type PageType = 'home' | 'creative-alchemy' | 'healing-expression';
 
 function AppContent() {
+  const { language } = useLanguage();
   const [isDark, setIsDark] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('milena_theme');
@@ -47,6 +48,45 @@ function AppContent() {
   const [isOrderOpen, setIsOrderOpen] = useState(false);
   const [isExcerptOpen, setIsExcerptOpen] = useState(false);
   const [infoModal, setInfoModal] = useState<InfoModalType>(null);
+
+  // Sync dynamic SEO page title, meta description, and html lang
+  useEffect(() => {
+    let title = '';
+    let description = '';
+
+    if (currentPage === 'creative-alchemy') {
+      if (language === 'hr') {
+        title = 'To su samo sise — Milena Jayawardana | Knjiga na hrvatskom & Amazon';
+        description = 'Naručite hrvatsko izdanje knjige "To su samo sise" autorice Milene Jayawardana ili kupite na Amazonu. Memoar o raku dojke, kreativnosti i oporavku.';
+      } else {
+        title = "It's Just Tits by Milena Jayawardana | Breast Cancer Memoir & Art — AkuruLab";
+        description = "Discover 'It's Just Tits' by Milena Jayawardana. A raw, artistic memoir of breast cancer recovery and creative alchemy. Available worldwide on Amazon.";
+      }
+    } else if (currentPage === 'healing-expression') {
+      if (language === 'hr') {
+        title = 'GEA Kafe Podcast & Podrška | Milena Jayawardana & Klub GEA Pula';
+        description = 'Službene epizode podcasta GEA Kafe (Gea Cafe) o raku dojke s onkolozima i borkinjama, posveta Klubu GEA Pula i vodič za operaciju.';
+      } else {
+        title = 'GEA Kafe Podcast & Community Support | Milena Jayawardana — AkuruLab';
+        description = 'Listen to the GEA Kafe (Gea Cafe) podcast featuring oncologists, therapists, and breast cancer survivors. Practical hospital packing guide and survivor community.';
+      }
+    } else {
+      if (language === 'hr') {
+        title = 'AkuruLab | Milena Jayawardana — Kreativna alkemija, "To su samo sise" & GEA Kafe';
+        description = 'Službena web stranica Milene Jayawardana i AkuruLaba. Knjiga o raku dojke "To su samo sise", GEA Kafe podcast, akvareli i priče iz Hrvatske i Šri Lanke.';
+      } else {
+        title = 'AkuruLab | Milena Jayawardana — "It\'s Just Tits", Creative Alchemy & GEA Kafe Podcast';
+        description = 'Official website of Milena Jayawardana & AkuruLab. Author of breast cancer memoir "It\'s Just Tits", host of GEA Kafe podcast, artist blending Mediterranean Croatia and Sri Lanka.';
+      }
+    }
+
+    document.title = title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', description);
+    }
+    document.documentElement.lang = language;
+  }, [currentPage, language]);
 
   // Sync dark class on document root and body
   useEffect(() => {
