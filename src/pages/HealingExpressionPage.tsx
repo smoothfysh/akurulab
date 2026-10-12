@@ -217,11 +217,11 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
 
   return (
     <div className="pt-16 animate-in fade-in duration-300">
-      {/* Section 1: Hero & Dedication to KLUB GEA Pula (Pale Olive Green) */}
-      <section className="py-16 md:py-24 px-4 relative overflow-hidden bg-gradient-to-b from-[#F2F5EC] to-[#EFF3E6] dark:from-zinc-950 dark:to-zinc-900 border-b border-[#DEE5D4]/60 dark:border-slate-800 transition-colors duration-300">
-        {/* Decorative subtle ambient blurs matching BookHero */}
-        <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-emerald-200/20 dark:bg-emerald-900/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-yellow-100/30 dark:bg-yellow-900/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Section 1: Hero & Dedication to KLUB GEA Pula */}
+      <section className="py-16 md:py-24 px-4 relative overflow-hidden bg-gradient-to-b from-[#FDF9F8] to-[#FBF5F4] dark:from-zinc-950 dark:to-zinc-900 border-b border-pink-100/60 dark:border-slate-800 transition-colors duration-300">
+        {/* Decorative subtle ambient blurs */}
+        <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-pink-200/20 dark:bg-pink-900/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-purple-100/30 dark:bg-purple-900/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Hero Header */}
@@ -239,14 +239,14 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
           </div>
 
           {/* Dedication to KLUB GEA Pula Card */}
-          <div className="relative rounded-3xl overflow-hidden bg-white/95 dark:bg-slate-800/95 border-2 border-emerald-200/80 dark:border-emerald-800/60 shadow-xl p-8 sm:p-12 md:p-14">
+          <div className="relative rounded-3xl overflow-hidden bg-white/95 dark:bg-slate-800/95 border-2 border-pink-200/80 dark:border-pink-900/50 shadow-xl p-8 sm:p-12 md:p-14">
             {/* Ambient Glow */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-300/20 dark:bg-emerald-600/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-80 h-80 bg-pink-200/30 dark:bg-pink-900/15 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
               {/* Left: Badge & Mission */}
               <div className="w-full lg:w-3/5 space-y-6 text-left">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider border border-emerald-200 dark:border-emerald-800">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pink-50 dark:bg-pink-950/70 text-primary dark:text-pink-300 text-xs font-bold uppercase tracking-wider border border-pink-200 dark:border-pink-800/60">
                   <Award className="w-3.5 h-3.5" />
                   <span>{t.healingPage.charityBadge}</span>
                 </div>
@@ -258,7 +258,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
                   >
                     {t.healingPage.charityTitle}
                   </h2>
-                  <p className="text-sm sm:text-base font-semibold text-emerald-700 dark:text-emerald-400">
+                  <p className="text-sm sm:text-base font-semibold text-primary dark:text-pink-300">
                     {t.healingPage.charitySubtitle}
                   </p>
                 </div>
@@ -273,7 +273,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
                     href="https://geapula.hr/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-base cursor-pointer"
+                    className="inline-flex items-center gap-2.5 bg-primary hover:bg-[#d84868] text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-base cursor-pointer"
                   >
                     <Heart className="w-5 h-5 fill-current" />
                     <span>{t.healingPage.charityBtn}</span>
@@ -283,7 +283,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
               </div>
 
               {/* Right: Key Benefits Card */}
-              <div className="w-full lg:w-2/5 bg-[#F8FAF4] dark:bg-slate-900/90 rounded-2xl p-6 sm:p-8 border border-emerald-100/90 dark:border-slate-700 shadow-md">
+              <div className="w-full lg:w-2/5 bg-[#FCF9F9] dark:bg-slate-900/90 rounded-2xl p-6 sm:p-8 border border-pink-100 dark:border-slate-700 shadow-md">
                 <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-5">
                   {t.healingPage.charityBeneficialTitle}
                 </h3>
@@ -301,7 +301,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
                       const rest = item.slice(colonIndex + 1);
                       return (
                         <div key={idx} className="flex items-start gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-5 h-5 text-primary dark:text-pink-400 flex-shrink-0 mt-0.5" />
                           <span className="leading-relaxed">
                             <strong className="font-semibold text-slate-900 dark:text-white">
                               {title}
@@ -313,7 +313,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
                     }
                     return (
                       <div key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-5 h-5 text-primary dark:text-pink-400 flex-shrink-0 mt-0.5" />
                         <span className="leading-relaxed">{item}</span>
                       </div>
                     );
@@ -326,7 +326,7 @@ export const HealingExpressionPage: React.FC<HealingExpressionPageProps> = () =>
                     href="https://geapula.hr/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                    className="font-bold text-primary dark:text-pink-400 hover:underline"
                   >
                     geapula.hr ↗
                   </a>

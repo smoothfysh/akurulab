@@ -35,14 +35,14 @@ export const translations = {
       title: 'Milena Jayawardana',
       p1: 'My life has never been a straight line, and honestly, I prefer it that way.',
       p2: 'My Sri Lankan husband and I met in the UK, and we’ve been navigating life and IT careers across Europe ever since. It was an incredible, fast-paced ride, but five years ago we decided to trade the city hustle for the coast, finally settling back to my home town, Pula in Croatia.',
-      p3: 'Today, our life is a mix of Mediterranean soul and South Asian warmth. That’s actually why I named this site Akuru. It means ‘letters’ in Sinhala, a nod to creativity, the stories we carry and the new chapters we write.',
+      p3: 'Today, our life is a mix of Mediterranean soul and South Asian warmth. That’s actually why I named this site Akuru. In the Sinhala language from Sri Lanka, the word akuru ("අකුරු") means letters or characters of the alphabet.',
       sendMessage: 'Send a message',
       journeyBadge: 'Life Timeline',
       journeyTitle: 'A Life Journey in Watercolour',
       journeySubtitle: '“Same soul... new chapters, still unfolding”',
     },
     hero: {
-      badge: 'Breast Cancer Memoir & Art',
+      badge: 'Self-Published Memoir',
       title: "It's just tits",
       subtitle: 'A journey of resilience and reclaiming womanhood.',
       description:
@@ -254,14 +254,14 @@ export const translations = {
       title: 'Milena Jayawardana',
       p1: 'Moj život nikada nije bio ravna linija, i iskreno, draže mi je tako.',
       p2: 'Moj suprug iz Šri Lanke i ja upoznali smo se u Velikoj Britaniji i od tada gradimo život i IT karijere diljem Europe. Bila je to nevjerojatna, dinamična vožnja, ali prije pet godina odlučili smo zamijeniti gradsku vrevu obalom te smo se konačno vratili u moj rodni grad, Pulu u Hrvatskoj.',
-      p3: 'Danas je naš život spoj mediteranske duše i južnoazijske topline. Upravo zato sam ovu stranicu nazvala Akuru. To znači ‘slova’ na sinhalskom jeziku, kao posveta kreativnosti, pričama koje nosimo i novim poglavljima koja pišemo.',
+      p3: 'Danas je naš život spoj mediteranske duše i južnoazijske topline. Upravo zato sam ovu stranicu nazvala Akuru. Na sinhalskom jeziku sa Šri Lanke, riječ akuru ("අකුරු") označava slova ili znakove abecede.',
       sendMessage: 'Pošalji poruku',
       journeyBadge: 'Životna priča',
       journeyTitle: 'Životno putovanje u akvarelu',
       journeySubtitle: '“Ista duša... nova poglavlja, koja se još uvijek otvaraju”',
     },
     hero: {
-      badge: 'Memoar o raku dojke i umjetnost',
+      badge: 'Samostalno objavljeni memoar',
       title: 'To su samo sise',
       subtitle: 'Put otpornosti i ponovnog osvajanja ženstvenosti.',
       description:

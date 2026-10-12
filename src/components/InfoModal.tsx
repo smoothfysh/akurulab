@@ -30,15 +30,15 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
         : `New Message from ${contactName} - AkuruLab`,
       ...(isHr
         ? {
-            'Ime i prezime': contactName,
-            'E-mail adresa': contactEmail,
-            'Poruka': contactMsg,
-          }
+          'Ime i prezime': contactName,
+          'E-mail adresa': contactEmail,
+          'Poruka': contactMsg,
+        }
         : {
-            'Sender Name': contactName,
-            'Email': contactEmail,
-            'Message': contactMsg,
-          }),
+          'Sender Name': contactName,
+          'Email': contactEmail,
+          'Message': contactMsg,
+        }),
       _replyto: contactEmail,
       _template: 'table',
     };
@@ -119,11 +119,10 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
             <button
               type="button"
               onClick={() => setLanguage('en')}
-              className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
-                language === 'en'
+              className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${language === 'en'
                   ? 'bg-primary text-white shadow-xs'
                   : 'text-slate-600 dark:text-slate-300 hover:text-primary'
-              }`}
+                }`}
               title="English"
             >
               EN
@@ -131,11 +130,10 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
             <button
               type="button"
               onClick={() => setLanguage('hr')}
-              className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
-                language === 'hr'
+              className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${language === 'hr'
                   ? 'bg-primary text-white shadow-xs'
                   : 'text-slate-600 dark:text-slate-300 hover:text-primary'
-              }`}
+                }`}
               title="Hrvatski"
             >
               HR
@@ -199,7 +197,7 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
                   <li><strong>Područje dostave:</strong> Cijela Republika Hrvatska.</li>
-                  <li><strong>Plaćanje i slanje:</strong> Nakon što ispunite obrazac za narudžbu, primit ćete podatke za uplatu putem e-maila. Slanje paketa započinje TEK NAKON zaprimljene uplate.</li>
+                  <li><strong>Plaćanje i slanje:</strong> Nakon što ispunite obrazac za narudžbu, primit ćete podatke za uplatu putem e-maila. Slanje paketa započinje NAKON zaprimljene uplate.</li>
                   <li><strong>Vrijeme dostave:</strong> Pošiljka se šalje putem pošte čim uplata bude evidentirana (vrijeme isporuke ovisi o poštanskoj službi).</li>
                 </ul>
                 <p className="pt-2">
