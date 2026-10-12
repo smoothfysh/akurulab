@@ -12,7 +12,7 @@ export const BookHero: React.FC<BookHeroProps> = ({ onOpenExcerpt, onOpenCroatia
   const { language, t } = useLanguage();
 
   return (
-    <header className="hero-section py-20 md:py-28 px-4 relative overflow-hidden bg-gradient-to-b from-[#F2F5EC] to-[#EFF3E6] dark:from-zinc-950 dark:to-zinc-900 border-y border-[#DEE5D4]/60 dark:border-slate-800 transition-colors duration-300">
+    <header className="hero-section py-20 md:py-28 px-4 relative overflow-hidden bg-gradient-to-b from-[#FDF9F8] to-[#FBF5F4] dark:from-zinc-950 dark:to-zinc-900 border-y border-pink-100/60 dark:border-slate-800 transition-colors duration-300">
       {/* Decorative watercolor background ambient blurs */}
       <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-pink-200/30 dark:bg-pink-900/10 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-yellow-100/40 dark:bg-yellow-900/10 rounded-full blur-3xl pointer-events-none"></div>
