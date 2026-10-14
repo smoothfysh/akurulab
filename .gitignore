@@ -10,3 +10,4 @@ coverage/
 desktop.ini
 .vscode/
 backups/
+*.code-workspace
